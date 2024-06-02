@@ -14,6 +14,7 @@ val Azul70 = Color(0x001C5C)
 //val AmareloClaro = Color(0xFFE083)
 
 val Branco = Color(0xFFFFFF)
+val Amarelo = Color(0xFFE083)
 
 val Purple40 = Color(0xFF6650a4)
 val PurpleGrey40 = Color(0xFF625b71)

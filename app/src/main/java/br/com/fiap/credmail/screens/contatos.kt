@@ -1,25 +1,48 @@
 package br.com.fiap.credmail.screens
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Outline
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import br.com.fiap.credmail.componentes.Cabecalho
+import androidx.constraintlayout.solver.widgets.Rectangle
+import br.com.fiap.credmail.R
+import br.com.fiap.credmail.componentes.CabecalhoContatos
+import br.com.fiap.credmail.componentes.ContatoCard
+import br.com.fiap.credmail.componentes.TextoContatoTipo2
+import br.com.fiap.credmail.componentes.TextoMenu
+import br.com.fiap.credmail.componentes.TextoPrincipal
 import br.com.fiap.credmail.componentes.TextoTipo2Right
+import br.com.fiap.credmail.model.ContatoAgenda
+import br.com.fiap.credmail.repository.getAllContatos
 
 @Composable
 fun ContatosScreen() {
@@ -29,7 +52,7 @@ fun ContatosScreen() {
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            Cabecalho(titulo = "Contatos")
+            CabecalhoContatos(titulo = "Contatos")
             //Header
 //            Column  {
 //                //Aqui é o cabeçalho
@@ -87,16 +110,20 @@ fun ContatosScreen() {
                 Spacer(modifier = Modifier.height(10.dp))
 
             }
-            Column(modifier = Modifier.fillMaxWidth().background(Color.Red).height(550.dp)){
-                //Aqui é são os e-mails
-                Button(onClick = { /*TODO*/ }) {
-                    Text(text = "PicPay") }
-                Button(onClick = { /*TODO*/ }) {
-                    Text(text = "Decolar") }
-                Button(onClick = { /*TODO*/ }) {
-                    Text(text = "Amil") }
+            Column(modifier = Modifier
+                .fillMaxWidth()
+                .height(550.dp)
+                .padding(10.dp, 1.dp),){
+                //Aqui é são os contatos
+                LazyColumn(){
+                    items(getAllContatos()){
+                        ContatoCard(contatoAgenda = it)
+                    }
+                }
             }
-            Column(verticalArrangement = Arrangement.Bottom, modifier = Modifier.background(Color.Green).fillMaxWidth()) {
+            Column(verticalArrangement = Arrangement.Bottom, modifier = Modifier
+                .background(Color.Green)
+                .fillMaxWidth()) {
                 //Aqui é o menu de baixo
                 Row {
                     Text(text = "Menu de baixo")

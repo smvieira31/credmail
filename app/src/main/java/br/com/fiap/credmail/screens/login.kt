@@ -89,9 +89,9 @@ fun LoginScreen(){
                         TextoPrincipal(texto = "Bem Vindo!")
                         TextoTipo2(texto = "entre com usuário e senha")
                         Spacer(modifier = Modifier.height(20.dp))
-                        CaixadeEntrada(value = "", placeHolder = "Digite seu e-mail.", keyboardType = KeyboardType.Email)
+                        CaixadeEntrada(placeHolder = "Digite seu e-mail.", keyboardType = KeyboardType.Email)
                         Spacer(modifier = Modifier.height(16.dp))
-                        CaixadeEntrada(value = "", placeHolder = "Digite sua senha.", keyboardType = KeyboardType.Password)
+                        CaixadeEntrada(placeHolder = "Digite sua senha.", keyboardType = KeyboardType.Password)
                         Spacer(modifier = Modifier.height(16.dp))
                         Botao(text = "Login")
                         Spacer(modifier = Modifier.height(16.dp))
@@ -102,7 +102,7 @@ fun LoginScreen(){
                     painter = painterResource(id = R.drawable.login),
                     contentDescription = "logo",
                     modifier = Modifier
-                        .size(340.dp).offset(y = (-335).dp)
+                        .size(340.dp).offset(y = (-315).dp)
 //                        .padding(top = 10.dp)
                 )
 

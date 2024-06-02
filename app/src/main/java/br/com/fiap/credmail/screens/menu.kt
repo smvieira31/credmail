@@ -6,6 +6,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,12 +16,16 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -75,7 +80,7 @@ fun MenuScreen() {
                 TextoTipo3(texto = "seuemail@example.com")
             }
             Spacer(modifier = Modifier.height(16.dp))
-            Divider(modifier = Modifier
+            HorizontalDivider(modifier = Modifier
                 .height(1.dp)
                 .width(300.dp), color = Color.LightGray)
             Spacer(modifier = Modifier.height(16.dp))
@@ -83,8 +88,29 @@ fun MenuScreen() {
             ItemsMenus(imagem = R.drawable.icon_send, descricao = "Enviados", textomenu = "Enviados")
             ItemsMenus(imagem = R.drawable.icon_send, descricao = "Enviados", textomenu = "Enviados")
             ItemsMenus(imagem = R.drawable.icon_send, descricao = "Enviados", textomenu = "Enviados")
-            ItemsMenus(imagem = R.drawable.icon_send, descricao = "Enviados", textomenu = "Enviados")
+            Button(onClick = { /*TODO*/ },
+                modifier = Modifier
+                    .fillMaxWidth(),
+                    //.height(100.dp),
+                shape = RectangleShape,
+                contentPadding = PaddingValues(0.dp),
+                colors =  ButtonDefaults.buttonColors(colorResource(id = R.color.azul_200))
 
+            ) {
+                Row(
+                    horizontalArrangement = Arrangement.Start,
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.icon_send),
+                        contentDescription = "Enviados",
+                        modifier = Modifier
+                            .size(20.dp)
+                    )
+                    TextoMenu(texto = "Enviados")
+                }
+            }
 
         }
     }
