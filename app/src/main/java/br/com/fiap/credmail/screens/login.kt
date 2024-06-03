@@ -1,60 +1,39 @@
 package br.com.fiap.credmail.screens
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.navigation.NavController
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.modifier.modifierLocalMapOf
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import br.com.fiap.credmail.R
 import br.com.fiap.credmail.componentes.Botao
+import br.com.fiap.credmail.componentes.BotaoLogin
 import br.com.fiap.credmail.componentes.CaixadeEntrada
 import br.com.fiap.credmail.componentes.TextoPrincipal
 import br.com.fiap.credmail.componentes.TextoTipo2
-import br.com.fiap.credmail.ui.theme.CredmailTheme
-import br.com.fiap.credmail.ui.theme.Montserrat
 
 
 @Composable
 //fun LoginScreen(navController: NavController){
-fun LoginScreen(){
+fun LoginScreen(navController: NavController) {
 //    var nome by remember {
 //        mutableStateOf("")
 //
@@ -81,7 +60,9 @@ fun LoginScreen(){
 //            }
             Column {
                 Card (
-                    modifier = Modifier.width(340.dp).offset(y = (230).dp),
+                    modifier = Modifier
+                        .width(340.dp)
+                        .offset(y = (230).dp),
                     colors = CardDefaults.cardColors(containerColor = colorResource(id = R.color.azul_200)),
                     shape = RoundedCornerShape(16.dp)
                 ) {
@@ -89,20 +70,21 @@ fun LoginScreen(){
                         TextoPrincipal(texto = "Bem Vindo!")
                         TextoTipo2(texto = "entre com usuário e senha")
                         Spacer(modifier = Modifier.height(20.dp))
-                        CaixadeEntrada(placeHolder = "Digite seu e-mail.", keyboardType = KeyboardType.Email)
+                        CaixadeEntrada(placeHolder = "Digite seu e-mail.", keyboardType = KeyboardType.Email, value = "", atualizaValor = {})
                         Spacer(modifier = Modifier.height(16.dp))
-                        CaixadeEntrada(placeHolder = "Digite sua senha.", keyboardType = KeyboardType.Password)
+                        CaixadeEntrada(placeHolder = "Digite sua senha.", keyboardType = KeyboardType.Password, value = "", atualizaValor = {})
                         Spacer(modifier = Modifier.height(16.dp))
-                        Botao(text = "Login")
+                        //Botao(text = "Login", onClick =)
                         Spacer(modifier = Modifier.height(16.dp))
-                        Botao(text = "Cadastrar")
+                        BotaoLogin(text = "cadastrar", navController = navController,"cadastro")
                     }
                 }
                 Image(
                     painter = painterResource(id = R.drawable.login),
                     contentDescription = "logo",
                     modifier = Modifier
-                        .size(340.dp).offset(y = (-315).dp)
+                        .size(340.dp)
+                        .offset(y = (-315).dp)
 //                        .padding(top = 10.dp)
                 )
 
@@ -114,11 +96,11 @@ fun LoginScreen(){
     }
 
 
-@Preview(showBackground = true, showSystemUi = true)
+/*@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun LoginScreenPreview() {
     LoginScreen()
-}
+}*/
 
 
 

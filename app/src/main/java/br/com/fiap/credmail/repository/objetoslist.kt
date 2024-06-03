@@ -3,7 +3,7 @@ package br.com.fiap.credmail.repository
 import br.com.fiap.credmail.R
 import br.com.fiap.credmail.model.CategoriasCards
 import br.com.fiap.credmail.model.ContatoAgenda
-import br.com.fiap.credmail.model.Emails
+import br.com.fiap.credmail.model.Email
 
 fun getAllContatos(): List<ContatoAgenda> {
     return listOf(
@@ -19,11 +19,11 @@ fun getAllCategorias(): List<CategoriasCards> {
         CategoriasCards(id = 2, categoria = "Bem-Estar",  imagem = R.drawable.coracao, corimagem = R.color.outroazul, corTexto = R.color.outroazulzinho),
     )
 }
-fun getAllEmails(): List<Emails> {
+fun getAllEmails(): List<Email> {
     return listOf(
-        Emails(id = 1, remetente = "PicPay",titulo = "Dê mais pique pro seu dinheiro!",categoria = "Financeiro", conteudo = "...", corTexto = R.color.vermelho, corCard = R.color.vermelhinho),
-        Emails(id = 2, remetente = "Decolar",titulo = "Eba! Sua viagem está confirmada",categoria = "Mobilidade", conteudo = "...", corTexto = R.color.amarelo, corCard = R.color.amarelinho),
-        Emails(id = 3, remetente = "Amil",titulo = "Quer viver a vida ao máximo",categoria = "Bem-estar", conteudo = "...", corTexto = R.color.outroazul, corCard = R.color.outroazulzinho),
+        Email(id = 1, remetente = "PicPay",titulo = "Dê mais pique pro seu dinheiro!",categoria = "Financeiro", conteudo = "...", corTexto = R.color.vermelho, corCard = R.color.vermelhinho),
+        Email(id = 2, remetente = "Decolar",titulo = "Eba! Sua viagem está confirmada",categoria = "Mobilidade", conteudo = "...", corTexto = R.color.amarelo, corCard = R.color.amarelinho),
+        Email(id = 3, remetente = "Amil",titulo = "Quer viver a vida ao máximo",categoria = "Bem-estar", conteudo = "...", corTexto = R.color.outroazul, corCard = R.color.outroazulzinho),
 
     )
 }
@@ -35,12 +35,12 @@ fun getContatosByNome(nome: String): List<ContatoAgenda>{
     }
 }
 
-fun getEmailsByRemetente(remetente: String): List<Emails>{
+fun getEmailsByRemetente(remetente: String): List<Email>{
     return getAllEmails().filter {
         it.remetente.startsWith(prefix = remetente,ignoreCase = true )
     }
 }
-fun getEmailsByCategoria(categoria: String): List<Emails>{
+fun getEmailsByCategoria(categoria: String): List<Email>{
     return getAllEmails().filter {
         it.categoria.startsWith(prefix = categoria,ignoreCase = true )
     }
