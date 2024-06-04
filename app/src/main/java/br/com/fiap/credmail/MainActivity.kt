@@ -10,6 +10,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.room.Room
+import br.com.fiap.credmail.model.Usuario
 import br.com.fiap.credmail.screens.CadastroScreen
 import br.com.fiap.credmail.screens.CadastroViewModel
 import br.com.fiap.credmail.screens.LoginScreen
@@ -35,7 +37,7 @@ class MainActivity : ComponentActivity() {
                         composable(route = "𝗹𝗼𝗴𝗶𝗻"){ LoginScreen(navController = 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿) }
                         composable(route = "home") { MainScreen() }
                         composable(route = "menu"){ MenuScreen() }
-                        composable(route = "cadastro"){ CadastroScreen(CadastroViewModel()) }
+                        composable(route = "cadastro"){ CadastroScreen(CadastroViewModel(),𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿) }
                         }
                     }
                 }
