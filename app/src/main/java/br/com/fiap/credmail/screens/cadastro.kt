@@ -21,10 +21,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -47,6 +51,9 @@ fun CadastroScreen(cadastroViewModel: CadastroViewModel, navController: NavContr
     val password by cadastroViewModel.password.observeAsState(initial = "")
     val context = LocalContext.current
     val usuarioRepository = UsuarioRepository(context)
+    var confirmaSenha by remember {
+        mutableStateOf("")
+    }
 
 
     Box(modifier = Modifier.fillMaxSize()){
@@ -79,16 +86,23 @@ fun CadastroScreen(cadastroViewModel: CadastroViewModel, navController: NavContr
                         Spacer(modifier = Modifier.height(16.dp))
                         CaixadeEntrada(placeHolder = "Digite sua senha", keyboardType = KeyboardType.Password, value = password, atualizaValor = {cadastroViewModel.onPasswordChanged(it)})
                         Spacer(modifier = Modifier.height(16.dp))
-                        CaixadeEntrada( placeHolder = "Confirme sua senha", keyboardType = KeyboardType.Password, value = "", atualizaValor = {cadastroViewModel.onNomeChanged(it)})
+                        CaixadeEntrada( placeHolder = "Confirme sua senha", keyboardType = KeyboardType.Password, value = confirmaSenha, atualizaValor = {confirmaSenha = it})
                         Spacer(modifier = Modifier.height(16.dp))
                         Button(
                             onClick = {
-                                usuarioRepository.salvar(Usuario(
-                                    nome = nome,
-                                    email = email,
-                                    senha = password,
-                                    id = null))
-                                navController.navigate("𝗹𝗼𝗴𝗶𝗻")
+                                if(password.equals(confirmaSenha)) {
+                                    usuarioRepository.salvar(
+                                        Usuario(
+                                            nome = nome,
+                                            email = email,
+                                            senha = password,
+                                            id = null
+                                        )
+                                    )
+                                    navController.navigate("𝗹𝗼𝗴𝗶𝗻")
+                                }
+                                navController.navigate("cadastro")
+
                             },
                             modifier = Modifier
                                 .width(120.dp)

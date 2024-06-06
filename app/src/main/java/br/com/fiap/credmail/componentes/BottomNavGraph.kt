@@ -9,10 +9,10 @@ import br.com.fiap.credmail.screens.ContatosScreen
 import br.com.fiap.credmail.screens.EmailsScreen
 import br.com.fiap.credmail.screens.EnviarScreen
 
-/*
+
 @Composable
-fun BottomNavGraph(){
-    NavHost(navController = navController as NavHostController, startDestination = BottomBarScreen.Emails.route){
+fun BottomNavGraph(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController){
+    NavHost(navController = 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿 as NavHostController, startDestination = BottomBarScreen.Emails.route){
         composable(route = BottomBarScreen.Emails.route){
             EmailsScreen()
         }
@@ -24,4 +24,4 @@ fun BottomNavGraph(){
         }
     }
 }
-*/
+

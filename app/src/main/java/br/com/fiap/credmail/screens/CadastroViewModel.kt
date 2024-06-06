@@ -30,7 +30,7 @@ class CadastroViewModel: ViewModel() {
         _password.value = novoPassword
     }
 
-    fun salvarUsuario(usuario: Usuario, usuarioRepository: UsuarioRepository){
+    fun comparaSenha(){
 
     }
 

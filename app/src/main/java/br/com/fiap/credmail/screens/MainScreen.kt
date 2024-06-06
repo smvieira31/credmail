@@ -10,6 +10,7 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -20,28 +21,29 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import br.com.fiap.credmail.R
 import br.com.fiap.credmail.componentes.BottomBarScreen
-//import br.com.fiap.credmail.componentes.BottomNavGraph
+import br.com.fiap.credmail.componentes.BottomNavGraph
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MainScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController, id: Long?) {
-    Scaffold(bottomBar = { BottomBar()}
+    Scaffold(bottomBar = { BottomBar(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿)}
     ) {
 //        BottomNavGraph()
     }
 }
 
 @Composable
-fun BottomBar(){
+fun BottomBar(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController){
     val screens = listOf(
         BottomBarScreen.Emails,
         BottomBarScreen.Contatos,
         BottomBarScreen.Enviar,
     )
-   // val navBackStackEntry by navController.currentBackStackEntryAsState()
-    //val currentDestination = navBackStackEntry?.destination
+    val navBackStackEntry by 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.currentBackStackEntryAsState()
+    val currentDestination = navBackStackEntry?.destination
 
     NavigationBar (
         containerColor = colorResource(id = R.color.azul_200),
@@ -49,7 +51,7 @@ fun BottomBar(){
         )
     ) {
         screens.forEach {screen ->
-    //        AddItem(screen = screen, currentDestination = currentDestination)
+            AddItem(screen = screen, currentDestination = currentDestination)
 
         }
 

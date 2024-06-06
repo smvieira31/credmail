@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
@@ -72,11 +73,13 @@ fun CaixadeEntrada(
         value = value,
         onValueChange = atualizaValor,
         modifier = Modifier.fillMaxWidth(),
+        //label = {Text("danadinho apareceu",color = Color.Black)},
         placeholder = {
             Text(
                 text = placeHolder,
                 fontWeight = FontWeight.Bold,
-                fontSize = 10.sp
+                fontSize = 10.sp,
+                color = Color.Gray,
             )
         },
         colors = OutlinedTextFieldDefaults.colors(
@@ -85,7 +88,9 @@ fun CaixadeEntrada(
             focusedTextColor = colorResource(id = R.color.azul_700),
             unfocusedTextColor = Color.LightGray,
             focusedContainerColor = Color.White,
-            unfocusedContainerColor = Color.White
+            unfocusedContainerColor = Color.White,
+            focusedLabelColor = Color.Transparent,
+
         ),
         shape = RoundedCornerShape(16.dp),
         keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
@@ -130,11 +135,10 @@ fun CaixadeEntradaEmail(
 
 @Composable
 fun Botao(
-    onclick: () -> Unit,
     text: String
 ){
     Button(
-        onClick = onclick,
+        onClick = {  },
         modifier = Modifier
             .width(120.dp)
             .height(48.dp),
