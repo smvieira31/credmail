@@ -17,6 +17,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -37,6 +38,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -44,6 +46,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import br.com.fiap.credmail.R
 import br.com.fiap.credmail.model.CategoriasCards
 import br.com.fiap.credmail.model.ContatoAgenda
@@ -127,11 +131,11 @@ fun CaixadeEntradaEmail(
 
 @Composable
 fun Botao(
+    onclick: () -> Unit,
     text: String
-
 ){
     Button(
-        onClick = {},
+        onClick = onclick,
         modifier = Modifier
             .width(120.dp)
             .height(48.dp),
@@ -165,6 +169,36 @@ fun BotaoIcone(
             Image(
                 painter = painterResource(id = imagemicone),
                 contentDescription = descricao,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight()
+                    .padding(0.dp)
+            )
+        }
+
+    }
+
+}
+@Composable
+fun BotaoIconeVec(
+    color: Color,
+    imagemicone: Int,
+    descricao: String
+
+){
+    Button(
+        onClick = { /*TODO*/ },
+        colors = ButtonDefaults.buttonColors(containerColor = color),
+        modifier = Modifier.size(width = 20.dp, height = 20.dp), contentPadding = PaddingValues(0.dp), shape = RectangleShape
+    ) {
+        Row (modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight()
+            .padding(0.dp)){
+            Icon(
+                imageVector = Icons.Default.DateRange,
+                contentDescription = descricao,
+                tint = colorResource(id = R.color.azul_700),
                 modifier = Modifier
                     .fillMaxWidth()
                     .fillMaxHeight()
@@ -430,158 +464,178 @@ fun TextoTipo5Email(
 
 @Composable
 fun ItemsMenus(
+    //onclick: () -> Unit,
     imagem: Int,
     descricao: String,
     textomenu: String) {
 
-    Row(
-        horizontalArrangement = Arrangement.Start,
-        modifier = Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Image(
-            painter = painterResource(id = imagem),
-            contentDescription = descricao,
-            modifier = Modifier
-                .size(20.dp)
-        )
-        TextoMenu(texto = textomenu)
-    }
-}
-
-@Composable
-fun CabecalhoContatos(
-    titulo: String
-
-) {
-    var title by remember {
-        mutableStateOf("")
-    }
-
-    var listContatobyNome by remember {
-        mutableStateOf(getAllContatos())
-    }
-
-    Card (//Aqui é o cabeçalho
+    Button(
+        onClick = { },
         modifier = Modifier
-            .fillMaxWidth()
-            .height(180.dp),
-        colors = CardDefaults.cardColors(containerColor = colorResource(id = R.color.azul_200)),
-        shape = RoundedCornerShape(bottomStart = 16.dp, bottomEnd = 16.dp)
-    ){
-        Column (
-            modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight(),
-            verticalArrangement = Arrangement.Bottom
+            .fillMaxWidth(),
+        //.height(100.dp),
+        shape = RectangleShape,
+        contentPadding = PaddingValues(0.dp),
+        colors = ButtonDefaults.buttonColors(colorResource(id = R.color.azul_200))
 
-        ){
-            Row(//Titulo de Emails
-                horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                //Esse texto vai ser alterado conforme o filtro
-                TextoPrincipal(texto = titulo)
-
-            }
-            Spacer(modifier = Modifier.height(16.dp))
-            Row (//Menus e pesquisa
-                horizontalArrangement = Arrangement.SpaceEvenly,
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
-            ){
-                BotaoIcone(color = colorResource(id = R.color.azul_200), imagemicone = R.drawable.sanduiche, descricao = "Menu")
-                OutlinedTextField(
-                    value = title,
-                    onValueChange = {
-                        listContatobyNome = getContatosByNome(title)
-                    },
-                    //modifier = Modifier
-                    //.width(280.dp)
-                    //.height(30.dp),
-                    label = {
-                        TextoTipo4(texto = "Pesquisar", color = Color.LightGray)
-                    },
-                    colors = OutlinedTextFieldDefaults.colors(
-                        unfocusedTextColor = Color.LightGray,
-                        focusedBorderColor = Color.LightGray,
-                        unfocusedBorderColor = Color.White,
-                        unfocusedContainerColor = Color.White
-                    ),
-                    shape = RoundedCornerShape(8.dp)
-                )
-
-            }
-            Spacer(modifier = Modifier.height(16.dp))
+    ) {
+        Row(
+            horizontalArrangement = Arrangement.Start,
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Image(
+                painter = painterResource(id = imagem),
+                contentDescription = descricao,
+                modifier = Modifier
+                    .size(20.dp)
+            )
+            TextoMenu(texto = textomenu)
         }
     }
 }
+@Composable
+fun CabecalhoContatos(
+        titulo: String
+
+    ) {
+        var title by remember {
+            mutableStateOf("")
+        }
+
+        var listContatobyNome by remember {
+            mutableStateOf(getAllContatos())
+        }
+
+        Card(//Aqui é o cabeçalho
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(180.dp),
+            colors = CardDefaults.cardColors(containerColor = colorResource(id = R.color.azul_200)),
+            shape = RoundedCornerShape(bottomStart = 16.dp, bottomEnd = 16.dp)
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight(),
+                verticalArrangement = Arrangement.Bottom
+
+            ) {
+                Row(//Titulo de Emails
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    //Esse texto vai ser alterado conforme o filtro
+                    TextoPrincipal(texto = titulo)
+
+                }
+                Spacer(modifier = Modifier.height(16.dp))
+                Row(//Menus e pesquisa
+                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    BotaoIcone(
+                        color = colorResource(id = R.color.azul_200),
+                        imagemicone = R.drawable.sanduiche,
+                        descricao = "Menu"
+                    )
+                    OutlinedTextField(
+                        value = title,
+                        onValueChange = {
+                            listContatobyNome = getContatosByNome(title)
+                        },
+                        //modifier = Modifier
+                        //.width(280.dp)
+                        //.height(30.dp),
+                        label = {
+                            TextoTipo4(texto = "Pesquisar", color = Color.LightGray)
+                        },
+                        colors = OutlinedTextFieldDefaults.colors(
+                            unfocusedTextColor = Color.LightGray,
+                            focusedBorderColor = Color.LightGray,
+                            unfocusedBorderColor = Color.White,
+                            unfocusedContainerColor = Color.White
+                        ),
+                        shape = RoundedCornerShape(8.dp)
+                    )
+
+                }
+                Spacer(modifier = Modifier.height(16.dp))
+            }
+        }
+    }
 
 @Composable
 fun CabecalhoEmails(
-    titulo: String
+        titulo: String
 
-) {
-    var title by remember {
-        mutableStateOf("")
-    }
+    ) {
+        var title by remember {
+            mutableStateOf("")
+        }
 
-    var listemailbyname by remember {
-        mutableStateOf(getAllEmails())
-    }
+        var listemailbyname by remember {
+            mutableStateOf(getAllEmails())
+        }
 
-    Card (//Aqui é o cabeçalho
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(180.dp),
-        colors = CardDefaults.cardColors(containerColor = colorResource(id = R.color.azul_200)),
-        shape = RoundedCornerShape(bottomStart = 16.dp, bottomEnd = 16.dp)
-    ){
-        Column (
+        Card(//Aqui é o cabeçalho
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight(),
-            verticalArrangement = Arrangement.Bottom
+                .height(180.dp),
+            colors = CardDefaults.cardColors(containerColor = colorResource(id = R.color.azul_200)),
+            shape = RoundedCornerShape(bottomStart = 16.dp, bottomEnd = 16.dp)
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight(),
+                verticalArrangement = Arrangement.Bottom
 
-        ){
-            Row(//Titulo de Emails
-                horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically
             ) {
-                //Esse texto vai ser alterado conforme o filtro
-                TextoPrincipal(texto = titulo)
+                Row(//Titulo de Emails
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    //Esse texto vai ser alterado conforme o filtro
+                    TextoPrincipal(texto = titulo)
 
-            }
-            Spacer(modifier = Modifier.height(16.dp))
-            Row (//Menus e pesquisa
-                horizontalArrangement = Arrangement.SpaceEvenly,
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
-            ){
-                BotaoIcone(color = colorResource(id = R.color.azul_200), imagemicone = R.drawable.sanduiche, descricao = "Menu")
-                OutlinedTextField(
-                    value = title,
-                    onValueChange = {
-                        listemailbyname = getEmailsByRemetente(title)
-                    },
-                    //modifier = Modifier
-                    //.width(280.dp)
-                    //.height(30.dp),
-                    label = {
-                        TextoTipo4(texto = "Pesquisar", color = Color.LightGray)
-                    },
-                    colors = OutlinedTextFieldDefaults.colors(
-                        unfocusedTextColor = Color.LightGray,
-                        focusedBorderColor = Color.LightGray,
-                        unfocusedBorderColor = Color.White,
-                        unfocusedContainerColor = Color.White
-                    ),
-                    shape = RoundedCornerShape(8.dp)
-                )
+                }
+                Spacer(modifier = Modifier.height(16.dp))
+                Row(//Menus e pesquisa
+                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    BotaoIcone(
+                        color = colorResource(id = R.color.azul_200),
+                        imagemicone = R.drawable.sanduiche,
+                        descricao = "Menu"
+                    )
+                    OutlinedTextField(
+                        value = title,
+                        onValueChange = {
+                            listemailbyname = getEmailsByRemetente(title)
+                        },
+                        //modifier = Modifier
+                        //.width(280.dp)
+                        //.height(30.dp),
+                        label = {
+                            TextoTipo4(texto = "Pesquisar", color = Color.LightGray)
+                        },
+                        colors = OutlinedTextFieldDefaults.colors(
+                            unfocusedTextColor = Color.LightGray,
+                            focusedBorderColor = Color.LightGray,
+                            unfocusedBorderColor = Color.White,
+                            unfocusedContainerColor = Color.White
+                        ),
+                        shape = RoundedCornerShape(8.dp)
+                    )
 
+                }
+                Spacer(modifier = Modifier.height(16.dp))
             }
-            Spacer(modifier = Modifier.height(16.dp))
         }
     }
-}
+
 

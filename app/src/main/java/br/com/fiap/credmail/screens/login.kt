@@ -49,12 +49,11 @@ import br.com.fiap.credmail.componentes.CaixadeEntrada
 import br.com.fiap.credmail.componentes.TextoPrincipal
 import br.com.fiap.credmail.componentes.TextoTipo2
 import br.com.fiap.credmail.ui.theme.CredmailTheme
-import br.com.fiap.credmail.ui.theme.Montserrat
 
 
 @Composable
 //fun LoginScreen(navController: NavController){
-fun LoginScreen(){
+fun LoginScreen(navController: NavController){
 //    var nome by remember {
 //        mutableStateOf("")
 //
@@ -81,7 +80,9 @@ fun LoginScreen(){
 //            }
             Column {
                 Card (
-                    modifier = Modifier.width(340.dp).offset(y = (230).dp),
+                    modifier = Modifier
+                        .width(340.dp)
+                        .offset(y = (230).dp),
                     colors = CardDefaults.cardColors(containerColor = colorResource(id = R.color.azul_200)),
                     shape = RoundedCornerShape(16.dp)
                 ) {
@@ -93,16 +94,18 @@ fun LoginScreen(){
                         Spacer(modifier = Modifier.height(16.dp))
                         CaixadeEntrada(placeHolder = "Digite sua senha.", keyboardType = KeyboardType.Password)
                         Spacer(modifier = Modifier.height(16.dp))
-                        Botao(text = "Login")
+                        Botao(onclick = {navController.navigate("menu")}, text = "login")
                         Spacer(modifier = Modifier.height(16.dp))
-                        Botao(text = "Cadastrar")
+                        Botao(onclick = {navController.navigate("cadastro")}, text = "cadastro")
+
                     }
                 }
                 Image(
                     painter = painterResource(id = R.drawable.login),
                     contentDescription = "logo",
                     modifier = Modifier
-                        .size(340.dp).offset(y = (-315).dp)
+                        .size(340.dp)
+                        .offset(y = (-315).dp)
 //                        .padding(top = 10.dp)
                 )
 
@@ -114,11 +117,11 @@ fun LoginScreen(){
     }
 
 
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun LoginScreenPreview() {
-    LoginScreen()
-}
+//@Preview(showBackground = true, showSystemUi = true)
+//@Composable
+//fun LoginScreenPreview() {
+//    LoginScreen()
+//}
 
 
 

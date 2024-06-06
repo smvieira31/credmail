@@ -37,10 +37,11 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
 
-                    val 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿 = rememberNavController()
-                    NavHost(navController = 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,
+                    val navController = rememberNavController()
+                    NavHost(navController = navController,
                         startDestination = "𝗹𝗼𝗴𝗶𝗻"){
-                        composable(route = "𝗹𝗼𝗴𝗶𝗻"){ LoginScreen() }
+                        composable(route = "𝗹𝗼𝗴𝗶𝗻"){ LoginScreen(navController) }
+                        composable(route = "home") { MainScreen() }
                         composable(route = "home") { MainScreen() }
                         composable(route = "menu"){ MenuScreen() }
                         composable(route = "cadastro"){ CadastroScreen() }
