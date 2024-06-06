@@ -51,7 +51,7 @@ import androidx.navigation.compose.rememberNavController
 import br.com.fiap.credmail.R
 import br.com.fiap.credmail.model.CategoriasCards
 import br.com.fiap.credmail.model.ContatoAgenda
-import br.com.fiap.credmail.model.Emails
+import br.com.fiap.credmail.model.Email
 import br.com.fiap.credmail.repository.getAllContatos
 import br.com.fiap.credmail.repository.getAllEmails
 import br.com.fiap.credmail.repository.getContatosByNome
@@ -59,19 +59,18 @@ import br.com.fiap.credmail.repository.getEmailsByRemetente
 
 @Composable
 fun CaixadeEntrada(
-    //value: String,
+    value: String,
     placeHolder: String,
-    keyboardType: KeyboardType
+    keyboardType: KeyboardType,
+    atualizaValor: (String) -> Unit
     ) {
     var texto by remember {
         mutableStateOf("")
     }
 
     OutlinedTextField(
-        value = texto,
-        onValueChange = {letra ->
-                        texto = letra
-        },
+        value = value,
+        onValueChange = atualizaValor,
         modifier = Modifier.fillMaxWidth(),
         placeholder = {
             Text(
@@ -259,7 +258,7 @@ fun ContatoCard(contatoAgenda: ContatoAgenda){
     }
 }
 @Composable
-fun EmailCard(emails: Emails){
+fun EmailCard(emails: Email){
     Button(onClick = { /*TODO*/ },
         modifier = Modifier
             .fillMaxWidth()
