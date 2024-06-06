@@ -29,11 +29,15 @@ import br.com.fiap.credmail.componentes.BotaoLogin
 import br.com.fiap.credmail.componentes.CaixadeEntrada
 import br.com.fiap.credmail.componentes.TextoPrincipal
 import br.com.fiap.credmail.componentes.TextoTipo2
+import br.com.fiap.credmail.ui.theme.CredmailTheme
+
 
 
 @Composable
 //fun LoginScreen(navController: NavController){
+
 fun LoginScreen(navController: NavController) {
+
 //    var nome by remember {
 //        mutableStateOf("")
 //
@@ -77,6 +81,10 @@ fun LoginScreen(navController: NavController) {
                         //Botao(text = "Login", onClick =)
                         Spacer(modifier = Modifier.height(16.dp))
                         BotaoLogin(text = "cadastrar", navController = navController,"cadastro")
+                        Botao(onclick = {navController.navigate("menu")}, text = "login")
+                        Spacer(modifier = Modifier.height(16.dp))
+                        Botao(onclick = {navController.navigate("cadastro")}, text = "cadastro")
+
                     }
                 }
                 Image(
@@ -96,11 +104,13 @@ fun LoginScreen(navController: NavController) {
     }
 
 
+
 /*@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun LoginScreenPreview() {
     LoginScreen()
 }*/
+
 
 
 

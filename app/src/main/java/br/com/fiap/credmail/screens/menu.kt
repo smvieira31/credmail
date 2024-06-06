@@ -30,6 +30,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import br.com.fiap.credmail.R
 import br.com.fiap.credmail.componentes.ItemsMenus
 import br.com.fiap.credmail.componentes.TextoMenu
@@ -37,6 +38,7 @@ import br.com.fiap.credmail.componentes.TextoPrincipal
 import br.com.fiap.credmail.componentes.TextoTipo3
 
 @Composable
+//fun MenuScreen(navController: NavController) {
 fun MenuScreen() {
 
     Box(modifier = Modifier
@@ -86,31 +88,7 @@ fun MenuScreen() {
             Spacer(modifier = Modifier.height(16.dp))
             ItemsMenus(imagem = R.drawable.icon_email, descricao = "Enviados", textomenu = "Enviados")
             ItemsMenus(imagem = R.drawable.icon_send, descricao = "Enviados", textomenu = "Enviados")
-            ItemsMenus(imagem = R.drawable.icon_send, descricao = "Enviados", textomenu = "Enviados")
-            ItemsMenus(imagem = R.drawable.icon_send, descricao = "Enviados", textomenu = "Enviados")
-            Button(onClick = { /*TODO*/ },
-                modifier = Modifier
-                    .fillMaxWidth(),
-                    //.height(100.dp),
-                shape = RectangleShape,
-                contentPadding = PaddingValues(0.dp),
-                colors =  ButtonDefaults.buttonColors(colorResource(id = R.color.azul_200))
-
-            ) {
-                Row(
-                    horizontalArrangement = Arrangement.Start,
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.icon_send),
-                        contentDescription = "Enviados",
-                        modifier = Modifier
-                            .size(20.dp)
-                    )
-                    TextoMenu(texto = "Enviados")
-                }
-            }
+            ItemsMenus(imagem = R.drawable.lixo, descricao = "Excluídos", textomenu = "Excluídos")
 
         }
     }
