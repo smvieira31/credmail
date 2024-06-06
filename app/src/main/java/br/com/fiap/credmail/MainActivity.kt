@@ -7,14 +7,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.room.Room
-import br.com.fiap.credmail.model.Usuario
+import androidx.navigation.navArgument
 import br.com.fiap.credmail.screens.CadastroScreen
 import br.com.fiap.credmail.screens.CadastroViewModel
 import br.com.fiap.credmail.screens.LoginScreen
+import br.com.fiap.credmail.screens.LoginViewModel
 import br.com.fiap.credmail.screens.MainScreen
 import br.com.fiap.credmail.screens.MenuScreen
 import br.com.fiap.credmail.ui.theme.CredmailTheme
@@ -34,8 +35,16 @@ class MainActivity : ComponentActivity() {
                     val 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿 = rememberNavController()
                     NavHost(navController = 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,
                         startDestination = "𝗹𝗼𝗴𝗶𝗻"){
-                        composable(route = "𝗹𝗼𝗴𝗶𝗻"){ LoginScreen(navController = 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿) }
-                        composable(route = "home") { MainScreen() }
+                        composable(route = "𝗹𝗼𝗴𝗶𝗻"){ LoginScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿, LoginViewModel()) }
+                        composable(route = "home/{id}",
+                            arguments = listOf(
+                                navArgument(name = "id"){
+                                    type = NavType.LongType
+                                }
+                            )
+                        ) {
+                            val id = it.arguments?.getLong("id")
+                            MainScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id) }
                         composable(route = "menu"){ MenuScreen() }
                         composable(route = "cadastro"){ CadastroScreen(CadastroViewModel(),𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿) }
                         }

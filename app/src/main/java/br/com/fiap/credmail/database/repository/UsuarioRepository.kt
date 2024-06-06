@@ -18,4 +18,8 @@ class UsuarioRepository(context: Context) {
     fun buscarPorId(id: Int) : Usuario{
         return db.findById(id)
     }
+
+    fun buscarPorEmail(email: String): Usuario {
+        return db.findByEmail(email)
+    }
 }

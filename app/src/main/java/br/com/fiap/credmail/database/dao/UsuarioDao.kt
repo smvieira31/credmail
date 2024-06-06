@@ -13,4 +13,7 @@ interface UsuarioDao {
 
     @Query(value = "SELECT * FROM Usuario WHERE id_usuario = :id")
     fun findById(id: Int): Usuario;
+
+    @Query(value = "SELECT * FROM Usuario WHERE ds_email = :email")
+    fun findByEmail(email: String): Usuario
 }
