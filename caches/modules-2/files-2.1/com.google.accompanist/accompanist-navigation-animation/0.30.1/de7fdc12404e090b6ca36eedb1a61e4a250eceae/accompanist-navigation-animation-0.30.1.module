@@ -1,0 +1,118 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.google.accompanist",
+    "module": "accompanist-navigation-animation",
+    "version": "0.30.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.6"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseVariantReleaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.navigation",
+          "module": "navigation-compose",
+          "version": {
+            "requires": "2.5.3"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.8.10"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "accompanist-navigation-animation-0.30.1.aar",
+          "url": "accompanist-navigation-animation-0.30.1.aar",
+          "size": 48204,
+          "sha512": "4ffc7056095098a9fe81c4cec8525bac83199027c30f89d0a7fd823aa628cddadcc63488688b5823d1e1c245586e217d71567d246f57f9106b1dce963c9fbc93",
+          "sha256": "ce9e4e24533bb630893288dbc8d8ef9a38926cb3a4bfc0315473c1a68908e3be",
+          "sha1": "f37cc07e0a62d6f97da440b3f4e4fd021b41b897",
+          "md5": "2722bb77b670e3775ab5d839ad625fe4"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.compose.animation",
+          "module": "animation",
+          "version": {
+            "requires": "1.4.0"
+          }
+        },
+        {
+          "group": "androidx.compose.foundation",
+          "module": "foundation",
+          "version": {
+            "requires": "1.4.0"
+          }
+        },
+        {
+          "group": "androidx.compose.material",
+          "module": "material",
+          "version": {
+            "requires": "1.4.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-android",
+          "version": {
+            "requires": "1.6.4"
+          }
+        },
+        {
+          "group": "androidx.navigation",
+          "module": "navigation-compose",
+          "version": {
+            "requires": "2.5.3"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.8.10"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "accompanist-navigation-animation-0.30.1.aar",
+          "url": "accompanist-navigation-animation-0.30.1.aar",
+          "size": 48204,
+          "sha512": "4ffc7056095098a9fe81c4cec8525bac83199027c30f89d0a7fd823aa628cddadcc63488688b5823d1e1c245586e217d71567d246f57f9106b1dce963c9fbc93",
+          "sha256": "ce9e4e24533bb630893288dbc8d8ef9a38926cb3a4bfc0315473c1a68908e3be",
+          "sha1": "f37cc07e0a62d6f97da440b3f4e4fd021b41b897",
+          "md5": "2722bb77b670e3775ab5d839ad625fe4"
+        }
+      ]
+    }
+  ]
+}
