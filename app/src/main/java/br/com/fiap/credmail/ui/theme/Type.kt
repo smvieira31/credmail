@@ -8,14 +8,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import br.com.fiap.credmail.R
 
-val Montserrat = FontFamily(
-    Font(R.font.montserrat)
-)
+//val Montserrat = FontFamily(
+//    Font(R.font.montserrat)
+//)
 
 // Set of Material typography styles to start with
 val Typography = Typography(
     bodyLarge = TextStyle(
-        fontFamily = Montserrat,
+//        fontFamily = Montserrat,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
         lineHeight = 24.sp,

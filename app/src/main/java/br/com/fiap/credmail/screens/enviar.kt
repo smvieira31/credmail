@@ -41,6 +41,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.fiap.credmail.R
 import br.com.fiap.credmail.componentes.BotaoIcone
+import br.com.fiap.credmail.componentes.BotaoIconeVec
 import br.com.fiap.credmail.componentes.CaixadeEntradaEmail
 import br.com.fiap.credmail.componentes.TextoTipo2
 import br.com.fiap.credmail.componentes.TextoTipo2Right
@@ -69,7 +70,7 @@ fun EnviarScreen() {
                     horizontalArrangement = Arrangement.SpaceEvenly
 
                 ) {
-                    BotaoIcone(color = Color.LightGray, imagemicone = R.drawable.voltar, descricao = "Voltar")
+                    BotaoIcone(color = Color.White, imagemicone = R.drawable.voltar, descricao = "Voltar")
 
                     TextoTipo2(texto = "Enviar e -mail")
                 }
@@ -90,24 +91,10 @@ fun EnviarScreen() {
 
                     BotaoIcone(color = Color.White, imagemicone = R.drawable.icon_send, descricao = "Anexar")
                     Spacer(modifier = Modifier.width(10.dp))
-                    BotaoIcone(color = Color.White, imagemicone = R.drawable.anexo, descricao = "Anexar")
+                    BotaoIconeVec(color = Color.White, imagemicone = R.drawable.anexo, descricao = "Anexar")
                     Spacer(modifier = Modifier.width(10.dp))
                     BotaoIcone(color = Color.White, imagemicone = R.drawable.anexo, descricao = "Anexar")
 
-                }
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(40.dp),
-                    horizontalArrangement = Arrangement.SpaceAround,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    TextoTipo2noAlig(texto = "De")
-                    Text(
-                        text = "esseseuemail@example.com",
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 10.sp
-                    )
                 }
                 Divider(modifier = Modifier
                     .height(2.dp)
