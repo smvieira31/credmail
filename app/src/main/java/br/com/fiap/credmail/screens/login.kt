@@ -96,8 +96,8 @@ fun LoginScreen(navController: NavController, loginViewModel: LoginViewModel) {
                                 val usuario = usuarioRepository.buscarPorEmail(email)
                                 Log.i("info", "home/${usuario.id}")
                                 if(!loginViewModel.validarUsuario(usuario,password))
-                                    navController.navigate("home/${usuario.id}")
-                                navController.navigate("𝗹𝗼𝗴𝗶𝗻")
+                                    navController.navigate("𝗹𝗼𝗴𝗶𝗻")
+                                navController.navigate("home/${usuario.id}")
                             },
                             modifier = Modifier
                                 .width(120.dp)
