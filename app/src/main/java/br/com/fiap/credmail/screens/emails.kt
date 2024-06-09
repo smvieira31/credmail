@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -46,8 +47,10 @@ import androidx.compose.ui.text.resolveDefaults
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.fiap.credmail.R
+import br.com.fiap.credmail.componentes.BarraInferior
 import br.com.fiap.credmail.componentes.BotaoCategoria
 import br.com.fiap.credmail.componentes.CabecalhoEmails
+import br.com.fiap.credmail.componentes.EmailCard
 import br.com.fiap.credmail.componentes.TextoEmail
 import br.com.fiap.credmail.componentes.TextoEmailTipo3
 import br.com.fiap.credmail.componentes.TextoEmailipo2
@@ -59,12 +62,14 @@ import br.com.fiap.credmail.componentes.TextoTipo4
 import br.com.fiap.credmail.componentes.TextoTipo5
 import br.com.fiap.credmail.componentes.TextoTipo5Email
 import br.com.fiap.credmail.repository.getAllCategorias
+import br.com.fiap.credmail.repository.getAllEmails
 
 @Composable
 fun EmailsScreen(){
 
-
-
+    var listemailbyname by remember {
+        mutableStateOf(getAllEmails())
+    }
 
     Box(modifier = Modifier.fillMaxSize()){
         Column (
@@ -104,40 +109,25 @@ fun EmailsScreen(){
             }
             Column(modifier = Modifier
                 .fillMaxWidth()
-                .background(Color.Red)
-                .height(450.dp)){
-                //Aqui é são os e-mails
-                Button(onClick = { /*TODO*/ },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(200.dp),
-                    shape = RectangleShape,
-                    contentPadding = PaddingValues(0.dp),
-                    colors =  ButtonDefaults.buttonColors(containerColor = Color.White)
-
-                ) {
-                    Row (verticalAlignment = Alignment.CenterVertically){
-                        Column (
-                            //modifier = Modifier.padding(10.dp),
-                            verticalArrangement = Arrangement.Center){
-                            TextoEmail(texto = "Titulo")
-                            TextoEmailipo2(texto = "Titulo 2")
-                            TextoEmailTipo3(texto = "conteudo")
-                            Card (modifier = Modifier.size(50.dp, 30.dp)){
-                                TextoTipo5Email(texto = "Categoria", color = R.color.amarelo)
-                            }
-
-                            }
-                        }
+                //.background(Color.Red)
+                .height(370.dp)){
+                LazyColumn (){
+                    items(listemailbyname){
+                        EmailCard(emails = it)
                     }
                 }
-                Button(onClick = { /*TODO*/ }) {
-                    Text(text = "PicPay") }
-                Button(onClick = { /*TODO*/ }) {
-                    Text(text = "Decolar") }
-                Button(onClick = { /*TODO*/ }) {
-                    Text(text = "Amil") }
+            }
+            Column (modifier = Modifier
+                .fillMaxWidth()
+                .height(80.dp),
+                //.background(color = Color.Cyan),
+                verticalArrangement = Arrangement.Bottom
 
+
+            ){
+                BarraInferior()
+
+            }
 
         }
 
