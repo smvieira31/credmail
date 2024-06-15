@@ -620,9 +620,9 @@ fun CabecalhoEmails(
                         onValueChange = {
                             listemailbyname = getEmailsByRemetente(title)
                         },
-                        //modifier = Modifier
-                        //.width(280.dp)
-                        //.height(30.dp),
+                        modifier = Modifier
+                        .width(280.dp)
+                        .height(30.dp),
                         label = {
                             TextoTipo4(texto = "Pesquisar", color = Color.LightGray)
                         },

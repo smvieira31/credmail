@@ -3,8 +3,6 @@ package br.com.fiap.credmail.screens
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import br.com.fiap.credmail.database.repository.UsuarioRepository
-import br.com.fiap.credmail.model.Usuario
 
 class CadastroViewModel: ViewModel() {
 
