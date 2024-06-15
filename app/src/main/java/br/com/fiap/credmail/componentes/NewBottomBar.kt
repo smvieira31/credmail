@@ -19,11 +19,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import br.com.fiap.credmail.R
 
 
 @Composable
-fun BarraInferior(){
+fun BarraInferior(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController, id: Long) {
 
     Card(
         modifier = Modifier
@@ -37,7 +38,7 @@ fun BarraInferior(){
             modifier = Modifier.fillMaxSize(),
             verticalAlignment = Alignment.CenterVertically
         ){
-            Button(onClick = { /*TODO*/ },
+            Button(onClick = { 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("home/${id}") },
                 colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.azul_200)),
                 //modifier = Modifier
             ) {
@@ -50,7 +51,7 @@ fun BarraInferior(){
                 )
 
             }
-            Button(onClick = { /*TODO*/ },
+            Button(onClick = { 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("contatos/${id}") },
                 colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.azul_200)),
                 //modifier = Modifier
             ) {
@@ -63,7 +64,7 @@ fun BarraInferior(){
                 )
 
             }
-            Button(onClick = { /*TODO*/ },
+            Button(onClick = { 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("enviar/${id}") },
                 colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.azul_200)),
                 //modifier = Modifier
             ) {

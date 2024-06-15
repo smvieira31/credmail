@@ -34,7 +34,7 @@ import br.com.fiap.credmail.componentes.BottomNavGraph
 fun MainScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController, id: Long?) {
     Scaffold(bottomBar = { BottomBar(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿)}
     ) {
-        BottomNavGraph(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿 = rememberNavController())
+        BottomNavGraph(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿 = rememberNavController(), id)
 
         }
     }
