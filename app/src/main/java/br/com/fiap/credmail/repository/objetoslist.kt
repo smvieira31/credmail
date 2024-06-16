@@ -15,8 +15,8 @@ fun getAllContatos(): List<ContatoAgenda> {
 fun getAllCategorias(): List<CategoriasCards> {
     return listOf(
         CategoriasCards(id = 1, categoria = "Mobilidade",  imagem = R.drawable.mobilidade, corimagem = R.color.amarelo, corTexto = R.color.amarelinho),
-        CategoriasCards(id = 2, categoria = "Financeiros",  imagem = R.drawable.bag, corimagem = R.color.vermelho, corTexto = R.color.vermelhinho),
-        CategoriasCards(id = 2, categoria = "Bem-Estar",  imagem = R.drawable.coracao, corimagem = R.color.outroazul, corTexto = R.color.outroazulzinho),
+        CategoriasCards(id = 2, categoria = "Financeiro",  imagem = R.drawable.bag, corimagem = R.color.vermelho, corTexto = R.color.vermelhinho),
+        CategoriasCards(id = 2, categoria = "Bem-estar",  imagem = R.drawable.coracao, corimagem = R.color.outroazul, corTexto = R.color.outroazulzinho),
     )
 }
 fun getAllEmails(): List<Email> {

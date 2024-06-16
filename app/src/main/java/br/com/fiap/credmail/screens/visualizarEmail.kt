@@ -68,7 +68,8 @@ fun VisualizarScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHo
                             imagemicone = R.drawable.voltar,
                             descricao = "Voltar",
                             𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,
-                            id
+                            id,
+                            "home"
                         )
                     }
                 }
@@ -93,7 +94,8 @@ fun VisualizarScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHo
                             imagemicone = R.drawable.lixo,
                             descricao = "Anexar",
                             𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,
-                            id
+                            id,
+                            ""
                         )
                     }
 

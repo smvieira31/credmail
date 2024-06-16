@@ -27,4 +27,8 @@ class EmailRepository(context: Context) {
         db.emailLido(lido,idEmail)
     }
 
+    fun buscaCategoria(categoria: String, id: Long?): List<Email>{
+        return db.buscarCategoria(categoria,id)
+    }
+
 }

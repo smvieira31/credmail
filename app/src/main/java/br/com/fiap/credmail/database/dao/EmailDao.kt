@@ -23,4 +23,7 @@ interface EmailDao {
     @Query(value = "UPDATE Email SET fl_lido = :lido where id_email = :id")
     fun emailLido(lido: Boolean, id: Long?);
 
+    @Query(value = "SELECT * FROM Email WHERE ds_categoria = :categoria and id_usuario = :id")
+    fun buscarCategoria(categoria: String, id: Long?): List<Email>
+
 }

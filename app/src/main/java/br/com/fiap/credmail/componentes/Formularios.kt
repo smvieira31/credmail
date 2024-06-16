@@ -150,11 +150,12 @@ fun BotaoIcone(
     imagemicone: Int,
     descricao: String,
     𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController,
-    id: Long
+    id: Long,
+    rota: String
 
 ){
     Button(
-        onClick = { 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("menu/${id}") },
+        onClick = { 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("${rota}/${id}") },
         colors = ButtonDefaults.buttonColors(containerColor = color),
         modifier = Modifier.size(width = 20.dp, height = 20.dp), contentPadding = PaddingValues(0.dp), shape = RectangleShape
     ) {
@@ -547,7 +548,7 @@ fun CabecalhoContatos(
                         color = colorResource(id = R.color.azul_200),
                         imagemicone = R.drawable.sanduiche,
                         descricao = "Menu",
-                        𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id
+                        𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿, id, "excluir"
 
                     )
                     OutlinedTextField(
@@ -623,7 +624,7 @@ fun CabecalhoEmails(
                         color = colorResource(id = R.color.azul_200),
                         imagemicone = R.drawable.sanduiche,
                         descricao = "Menu",
-                        𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id
+                        𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿, id, "menu"
                     )
                     OutlinedTextField(
                         value = title,

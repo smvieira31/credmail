@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Divider
@@ -70,7 +69,8 @@ fun EnviarScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCo
                             imagemicone = R.drawable.voltar,
                             descricao = "Voltar",
                             𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,
-                            id
+                            id,
+                            "home"
                         )
                     }
 
@@ -97,7 +97,8 @@ fun EnviarScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCo
                             imagemicone = R.drawable.icon_send,
                             descricao = "Anexar",
                             𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,
-                            id
+                            id,
+                            "excluir"
                         )
                     }
                     Spacer(modifier = Modifier.width(10.dp))
@@ -109,7 +110,8 @@ fun EnviarScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCo
                             imagemicone = R.drawable.anexo,
                             descricao = "Anexar",
                             𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,
-                            id
+                            id,
+                            "excluir"
                         )
                     }
 
