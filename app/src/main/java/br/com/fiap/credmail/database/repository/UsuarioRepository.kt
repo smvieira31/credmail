@@ -15,7 +15,7 @@ class UsuarioRepository(context: Context) {
         return db.buscaTodos()
     }
 
-    fun buscarPorId(id: Int) : Usuario{
+    fun buscarPorId(id: Long?) : Usuario{
         return db.findById(id)
     }
 

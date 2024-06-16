@@ -20,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -29,11 +30,15 @@ import br.com.fiap.credmail.R
 import br.com.fiap.credmail.componentes.ItemsMenus
 import br.com.fiap.credmail.componentes.TextoPrincipal
 import br.com.fiap.credmail.componentes.TextoTipo3
+import br.com.fiap.credmail.database.repository.UsuarioRepository
 
 @Composable
 //fun MenuScreen(navController: NavController) {
 fun MenuScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController, id: Long?) {
+    val context = LocalContext.current
+    val usuarioRepository = UsuarioRepository(context)
 
+    val usuario = usuarioRepository.buscarPorId(id)
     Box(modifier = Modifier
         .fillMaxSize()
         .background(color = colorResource(id = R.color.azul_200))) {
@@ -78,10 +83,10 @@ fun MenuScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCont
                 )
             }
             Row {
-                TextoPrincipal(texto = "Sua Conta")
+                TextoPrincipal(texto = usuario.nome)
             }
             Row {
-                TextoTipo3(texto = "seuemail@example.com")
+                TextoTipo3(texto = usuario.email)
             }
             Spacer(modifier = Modifier.height(16.dp))
             HorizontalDivider(modifier = Modifier

@@ -114,7 +114,23 @@ fun CadastroScreen(cadastroViewModel: CadastroViewModel, navController: NavContr
                             )
                         }
                         Spacer(modifier = Modifier.height(16.dp))
-                        Botao(text = "Voltar")
+                        Button(
+                            onClick = {
+                                navController.navigate("𝗹𝗼𝗴𝗶𝗻")
+                            },
+                            modifier = Modifier
+                                .width(120.dp)
+                                .height(48.dp),
+                            shape = RoundedCornerShape(16.dp),
+                            colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.amarelinho))
+                        ) {
+                            Text(
+                                text = "Voltar",
+                                fontWeight = FontWeight.Bold,
+                                color = colorResource(id = R.color.azul_700),
+                                fontSize = 11.sp
+                            )
+                        }
 
                     }
                 }
