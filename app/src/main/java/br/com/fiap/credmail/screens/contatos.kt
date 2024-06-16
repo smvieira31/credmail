@@ -34,7 +34,9 @@ fun ContatosScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHost
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            CabecalhoContatos(titulo = "Contatos")
+            if (id != null) {
+                CabecalhoContatos(titulo = "Contatos",𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id)
+            }
             //Header
 //            Column  {
 //                //Aqui é o cabeçalho

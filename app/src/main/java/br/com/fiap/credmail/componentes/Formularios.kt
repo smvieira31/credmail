@@ -1,7 +1,6 @@
 package br.com.fiap.credmail.componentes
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -13,20 +12,15 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
@@ -39,7 +33,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -47,8 +40,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
+import androidx.navigation.NavHostController
 import br.com.fiap.credmail.R
 import br.com.fiap.credmail.model.CategoriasCards
 import br.com.fiap.credmail.model.ContatoAgenda
@@ -56,7 +48,6 @@ import br.com.fiap.credmail.model.Email
 import br.com.fiap.credmail.repository.getAllContatos
 import br.com.fiap.credmail.repository.getAllEmails
 import br.com.fiap.credmail.repository.getContatosByNome
-import br.com.fiap.credmail.repository.getEmailsByRemetente
 
 @Composable
 fun CaixadeEntrada(
@@ -157,11 +148,13 @@ fun Botao(
 fun BotaoIcone(
     color: Color,
     imagemicone: Int,
-    descricao: String
+    descricao: String,
+    𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController,
+    id: Long
 
 ){
     Button(
-        onClick = { /*TODO*/ },
+        onClick = { 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("menu/${id}") },
         colors = ButtonDefaults.buttonColors(containerColor = color),
         modifier = Modifier.size(width = 20.dp, height = 20.dp), contentPadding = PaddingValues(0.dp), shape = RectangleShape
     ) {
@@ -499,7 +492,9 @@ fun ItemsMenus(
 }
 @Composable
 fun CabecalhoContatos(
-        titulo: String
+        titulo: String,
+        𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController,
+        id: Long
 
     ) {
         var title by remember {
@@ -541,7 +536,9 @@ fun CabecalhoContatos(
                     BotaoIcone(
                         color = colorResource(id = R.color.azul_200),
                         imagemicone = R.drawable.sanduiche,
-                        descricao = "Menu"
+                        descricao = "Menu",
+                        𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id
+
                     )
                     OutlinedTextField(
                         value = title,
@@ -571,7 +568,9 @@ fun CabecalhoContatos(
 
 @Composable
 fun CabecalhoEmails(
-        titulo: String
+        titulo: String,
+        𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController,
+        id: Long
 
     ) {
         var title by remember {
@@ -613,22 +612,23 @@ fun CabecalhoEmails(
                     BotaoIcone(
                         color = colorResource(id = R.color.azul_200),
                         imagemicone = R.drawable.sanduiche,
-                        descricao = "Menu"
+                        descricao = "Menu",
+                        𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id
                     )
                     OutlinedTextField(
                         value = title,
                         onValueChange = {
-                            listemailbyname = getEmailsByRemetente(title)
+                            title = it
                         },
                         modifier = Modifier
                         .width(280.dp)
                         .height(30.dp),
                         label = {
-                            TextoTipo4(texto = "Pesquisar", color = Color.LightGray)
+                            TextoTipo4(texto = "Pesquisar", color = Color.Black)
                         },
                         colors = OutlinedTextFieldDefaults.colors(
-                            unfocusedTextColor = Color.LightGray,
-                            focusedBorderColor = Color.LightGray,
+                            unfocusedTextColor = Color.White,
+                            focusedBorderColor = Color.White,
                             unfocusedBorderColor = Color.White,
                             unfocusedContainerColor = Color.White
                         ),

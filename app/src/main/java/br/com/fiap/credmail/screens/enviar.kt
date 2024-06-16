@@ -27,7 +27,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -35,6 +34,7 @@ import br.com.fiap.credmail.R
 import br.com.fiap.credmail.componentes.BarraInferior
 import br.com.fiap.credmail.componentes.BotaoIcone
 import br.com.fiap.credmail.componentes.BotaoIconeVec
+import br.com.fiap.credmail.componentes.CabecalhoEmails
 import br.com.fiap.credmail.componentes.CaixadeEntradaEmail
 import br.com.fiap.credmail.componentes.TextoTipo2
 import br.com.fiap.credmail.componentes.TextoTipo2noAlig
@@ -51,7 +51,9 @@ fun EnviarScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCo
                 .padding(15.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            //Header
+            if (id != null) {
+                CabecalhoEmails(titulo = "Enviar Email", 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿, id)
+            }
             Column {
                 //Aqui é o cabeçalho
                 Row(
@@ -62,7 +64,15 @@ fun EnviarScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCo
                     horizontalArrangement = Arrangement.SpaceEvenly
 
                 ) {
-                    BotaoIcone(color = Color.White, imagemicone = R.drawable.voltar, descricao = "Voltar")
+                    if (id != null) {
+                        BotaoIcone(
+                            color = Color.White,
+                            imagemicone = R.drawable.voltar,
+                            descricao = "Voltar",
+                            𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,
+                            id
+                        )
+                    }
 
                     TextoTipo2(texto = "Enviar e -mail")
                 }
@@ -81,11 +91,27 @@ fun EnviarScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCo
 
                 ){
 
-                    BotaoIcone(color = Color.White, imagemicone = R.drawable.icon_send, descricao = "Anexar")
+                    if (id != null) {
+                        BotaoIcone(
+                            color = Color.White,
+                            imagemicone = R.drawable.icon_send,
+                            descricao = "Anexar",
+                            𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,
+                            id
+                        )
+                    }
                     Spacer(modifier = Modifier.width(10.dp))
                     BotaoIconeVec(color = Color.White, imagemicone = R.drawable.anexo, descricao = "Anexar")
                     Spacer(modifier = Modifier.width(10.dp))
-                    BotaoIcone(color = Color.White, imagemicone = R.drawable.anexo, descricao = "Anexar")
+                    if (id != null) {
+                        BotaoIcone(
+                            color = Color.White,
+                            imagemicone = R.drawable.anexo,
+                            descricao = "Anexar",
+                            𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,
+                            id
+                        )
+                    }
 
                 }
                 Divider(modifier = Modifier
