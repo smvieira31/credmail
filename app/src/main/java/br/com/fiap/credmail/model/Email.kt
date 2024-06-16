@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class Email(
+data class Email(,
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id_email") val id: Long = 0,
     @ColumnInfo("ds_remetente")val remetente: String = "",
     @ColumnInfo("ds_titulo")val titulo: String  = "",
