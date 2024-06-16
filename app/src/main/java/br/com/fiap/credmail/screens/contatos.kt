@@ -96,7 +96,7 @@ fun ContatosScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHost
             }
             Column(modifier = Modifier
                 .fillMaxWidth()
-                .height(550.dp)
+                .height(500.dp)
                 .padding(10.dp, 1.dp),){
                 //Aqui é são os contatos
                 LazyColumn(){
@@ -104,15 +104,16 @@ fun ContatosScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHost
                         ContatoCard(contatoAgenda = it)
                     }
                 }
-                Column (modifier = Modifier
-                    .fillMaxWidth()
-                    .height(80.dp),
-                    //.background(color = Color.Cyan),
-                    verticalArrangement = Arrangement.Bottom
-                ){
-                    if (id != null) {
-                        BarraInferior(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id)
-                    }
+
+            }
+            Column (modifier = Modifier
+                .fillMaxWidth()
+                .height(100.dp),
+                //.background(color = Color.Cyan),
+                verticalArrangement = Arrangement.Bottom
+            ){
+                if (id != null) {
+                    BarraInferior(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id)
                 }
             }
         }
