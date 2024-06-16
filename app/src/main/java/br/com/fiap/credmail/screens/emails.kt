@@ -79,7 +79,7 @@ fun EmailsScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCo
             Column(modifier = Modifier
                 .fillMaxWidth()
                 //.background(Color.Red)
-                .height(370.dp)){
+                .height(550.dp)){
                 LazyColumn (){
                     items(listemailbyname){
                         EmailCard(emails = it)
@@ -87,7 +87,7 @@ fun EmailsScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCo
                 }
                 Column (modifier = Modifier
                     .fillMaxWidth()
-                    .height(80.dp),
+                    .height(300.dp),
                     //.background(color = Color.Cyan),
                     verticalArrangement = Arrangement.Bottom
                 ){

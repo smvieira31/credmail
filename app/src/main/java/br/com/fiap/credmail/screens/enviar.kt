@@ -47,8 +47,8 @@ fun EnviarScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCo
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(15.dp),
+                .fillMaxSize(),
+                //.padding(15.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             if (id != null) {
@@ -147,7 +147,7 @@ fun EnviarScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCo
                         texto = letra },
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(500.dp),
+                            .height(250.dp),
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = Color.White,
                             unfocusedBorderColor = Color.White,
@@ -166,15 +166,16 @@ fun EnviarScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCo
                             )
                         }
                     )
-                    Column (modifier = Modifier
-                        .fillMaxWidth()
-                        .height(80.dp),
-                        //.background(color = Color.Cyan),
-                        verticalArrangement = Arrangement.Bottom
-                    ){
-                        if (id != null) {
-                            BarraInferior(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id)
-                        }
+
+                }
+                Column (modifier = Modifier
+                    .fillMaxWidth()
+                    .height(200.dp),
+                    //.background(color = Color.Cyan),
+                    verticalArrangement = Arrangement.Bottom
+                ){
+                    if (id != null) {
+                        BarraInferior(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id)
                     }
                 }
             }
