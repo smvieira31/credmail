@@ -10,7 +10,7 @@ import br.com.fiap.credmail.model.Email
 import br.com.fiap.credmail.model.Usuario
 
 
-@Database(entities = [Usuario::class, Email::class], version = 3)
+@Database(entities = [Usuario::class, Email::class], version = 5)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun usuarioDao(): UsuarioDao
 

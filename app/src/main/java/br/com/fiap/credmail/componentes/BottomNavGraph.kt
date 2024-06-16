@@ -13,7 +13,9 @@ import br.com.fiap.credmail.screens.EnviarScreen
 fun BottomNavGraph(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController, id: Long?){
     NavHost(navController = 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿 as NavHostController, startDestination = BottomBarScreen.Emails.route){
         composable(route = BottomBarScreen.Emails.route){
-            EmailsScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿, id)
+            if (id != null) {
+                EmailsScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿, id)
+            }
         }
         composable(route = BottomBarScreen.Contatos.route){
             ContatosScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿, id)

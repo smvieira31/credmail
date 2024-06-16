@@ -38,7 +38,9 @@ import br.com.fiap.credmail.R
 import br.com.fiap.credmail.componentes.Botao
 import br.com.fiap.credmail.componentes.CaixadeEntrada
 import br.com.fiap.credmail.componentes.TextoPrincipal
+import br.com.fiap.credmail.database.repository.EmailRepository
 import br.com.fiap.credmail.database.repository.UsuarioRepository
+import br.com.fiap.credmail.model.Email
 import br.com.fiap.credmail.model.Usuario
 
 @Composable
@@ -49,6 +51,7 @@ fun CadastroScreen(cadastroViewModel: CadastroViewModel, navController: NavContr
     val password by cadastroViewModel.password.observeAsState(initial = "")
     val context = LocalContext.current
     val usuarioRepository = UsuarioRepository(context)
+    val emailRepository = EmailRepository(context)
     var confirmaSenha by remember {
         mutableStateOf("")
     }
@@ -87,7 +90,7 @@ fun CadastroScreen(cadastroViewModel: CadastroViewModel, navController: NavContr
                         Button(
                             onClick = {
                                 if(password.equals(confirmaSenha)) {
-                                    usuarioRepository.salvar(
+                                    val idUsuario = usuarioRepository.salvar(
                                         Usuario(
                                             nome = nome,
                                             email = email,
@@ -95,6 +98,10 @@ fun CadastroScreen(cadastroViewModel: CadastroViewModel, navController: NavContr
                                             id = null
                                         )
                                     )
+                                    emailRepository.salvarEmail(Email(id= null,remetente = "PicPay",titulo = "Dê mais pique pro seu dinheiro!",categoria = "Financeiro", conteudo = "...", corTexto = R.color.vermelho, corCard = R.color.vermelhinho, idUsuario = idUsuario,flagLido = false))
+                                    emailRepository.salvarEmail(Email(id= null,remetente = "Decolar",titulo = "Eba! Sua viagem está confirmada",categoria = "Mobilidade", conteudo = "...", corTexto = R.color.amarelo, corCard = R.color.amarelinho, idUsuario = idUsuario,flagLido = false))
+                                    emailRepository.salvarEmail(Email(id= null,remetente = "Amil",titulo = "Quer viver a vida ao máximo",categoria = "Bem-estar", conteudo = "...", corTexto = R.color.outroazul, corCard = R.color.outroazulzinho, idUsuario = idUsuario,flagLido = false))
+
                                     navController.navigate("𝗹𝗼𝗴𝗶𝗻")
                                 }
                                 navController.navigate("cadastro")

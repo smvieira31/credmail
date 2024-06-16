@@ -255,8 +255,8 @@ fun ContatoCard(contatoAgenda: ContatoAgenda){
     }
 }
 @Composable
-fun EmailCard(emails: Email){
-    Button(onClick = { /*TODO*/ },
+fun EmailCard(emails: Email, 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController){
+    Button(onClick = { 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("ler/${emails.idUsuario}/${emails.id}")},
         modifier = Modifier
             .fillMaxWidth()
             .height(100.dp),
@@ -269,9 +269,16 @@ fun EmailCard(emails: Email){
             Column (
                 //modifier = Modifier.padding(10.dp),
                 verticalArrangement = Arrangement.Center){
-                TextoEmail(texto = emails.remetente)
-                TextoEmailipo2(texto = emails.titulo)
-                TextoEmailTipo3(texto = emails.conteudo)
+                if(emails.flagLido){
+                    TextoEmail(texto = emails.remetente, color = Color.Gray)
+                    TextoEmailipo2(texto = emails.titulo, color = Color.Gray)
+                    TextoEmailTipo3(texto = emails.conteudo, color = Color.Gray)
+                }
+                else{
+                    TextoEmail(texto = emails.remetente, color = Color.Black)
+                    TextoEmailipo2(texto = emails.titulo, color = Color.Black)
+                    TextoEmailTipo3(texto = emails.conteudo, color = Color.Black)
+                }
                 Card (colors = CardDefaults.cardColors(colorResource(id = emails.corCard))){
                     TextoTipo5Email(texto = emails.categoria, color = emails.corTexto)
                 }
@@ -309,13 +316,14 @@ fun TextoMenu(
 }
 @Composable
 fun TextoEmail(
-    texto: String
+    texto: String,
+    color: Color
 ){
     Text(text = texto,
     modifier = Modifier.padding(10.dp),
     fontSize = 20.sp,
     fontWeight = FontWeight.ExtraBold,
-    color = Color.Black,
+    color = color,
     textAlign = TextAlign.Start,
     //fontFamily = Montserrat -- Arrumar essa Fonte para todo o projeto!!
     )
@@ -336,13 +344,14 @@ fun TextoTipo2(
     )
 }@Composable
 fun TextoEmailipo2(
-    texto: String
+    texto: String,
+    color: Color
 ){
     Text(text = texto,
         modifier = Modifier.padding(10.dp),
         fontSize = 12.sp,
         fontWeight = FontWeight.ExtraBold,
-        color = Color.Black,
+        color = color,
         textAlign = TextAlign.Start,
         //fontFamily = Montserrat -- Arrumar essa Fonte para todo o projeto!!
     )
@@ -417,11 +426,12 @@ fun TextoTipo4(
 @Composable
 fun TextoEmailTipo3(
     texto: String,
+    color: Color,
 ){
     Text(text = texto,
         //modifier = Modifier.fillMaxWidth(),
         fontSize = 10.sp,
-        color = Color.Black,
+        color = color,
         textAlign = TextAlign.Start,
         fontWeight = FontWeight.Bold,
         //fontFamily = Montserrat -- Arrumar essa Fonte para todo o projeto!!

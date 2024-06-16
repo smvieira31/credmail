@@ -1,6 +1,5 @@
 package br.com.fiap.credmail.screens
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,7 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import br.com.fiap.credmail.componentes.BarraInferior
@@ -28,16 +27,20 @@ import br.com.fiap.credmail.componentes.BotaoCategoria
 import br.com.fiap.credmail.componentes.CabecalhoEmails
 import br.com.fiap.credmail.componentes.EmailCard
 import br.com.fiap.credmail.componentes.TextoTipo2Right
+import br.com.fiap.credmail.database.repository.EmailRepository
 import br.com.fiap.credmail.repository.getAllCategorias
 import br.com.fiap.credmail.repository.getAllEmails
 
 @Composable
-fun EmailsScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController, id: Long?) {
+fun EmailsScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController, id: Long) {
+
+    val context = LocalContext.current
+    val emailRepository = EmailRepository(context)
+    val listEmails = emailRepository.listByIdUsuario(id)
 
     var listemailbyname by remember {
         mutableStateOf(getAllEmails())
     }
-
     Box(modifier = Modifier.fillMaxSize()){
         Column (
             modifier = Modifier.fillMaxSize(),
@@ -81,8 +84,8 @@ fun EmailsScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCo
                 //.background(Color.Red)
                 .height(550.dp)){
                 LazyColumn (){
-                    items(listemailbyname){
-                        EmailCard(emails = it)
+                    items(listEmails){
+                        EmailCard(emails = it,𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿)
                     }
                 }
                 Column (modifier = Modifier
