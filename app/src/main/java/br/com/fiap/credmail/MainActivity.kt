@@ -47,7 +47,12 @@ class MainActivity : ComponentActivity() {
                         ) {
                             val id = it.arguments?.getLong("id")
                             EmailsScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id) }
-                        composable(route = "menu"){ MenuScreen() }
+                        composable(route = "menu/{id}",arguments = listOf(
+                            navArgument(name = "id"){
+                                type = NavType.LongType
+                            })){
+                            val id = it.arguments?.getLong("id")
+                            MenuScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id)}
                         composable(route = "cadastro"){ CadastroScreen(CadastroViewModel(),𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿) }
                         composable(route = "contatos/{id}",
                             arguments = listOf(

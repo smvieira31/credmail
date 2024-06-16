@@ -44,7 +44,9 @@ fun EmailsScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCo
             horizontalAlignment = Alignment.CenterHorizontally
         ){
             //Header
-            CabecalhoEmails(titulo = "Todos os e-mails")
+            if (id != null) {
+                CabecalhoEmails(titulo = "Todos os e-mails", 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id)
+            }
 
             Column(
                 modifier = Modifier
