@@ -1,0 +1,32 @@
+# Gradle specific
+.gradle/
+build/
+
+# Android Studio specific
+.idea/
+*.iml
+
+# IntelliJ IDEA specific
+*.ipr
+*.iws
+*.idea/
+.idea/
+*.iml
+.idea/workspace.xml
+.idea/libraries
+.idea/tasks.xml
+.idea/dictionaries
+.idea/vcs.xml
+.idea/jsLibraryMappings.xml
+
+# Ignore Android specific build output directories
+*/build/
+
+# Ignore local configuration file
+local.properties
+
+# Ignore .caches directories
+.caches/
+
+# Ignore log files
+*.log
