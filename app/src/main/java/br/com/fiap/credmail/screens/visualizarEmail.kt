@@ -1,6 +1,7 @@
 package br.com.fiap.credmail.screens
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -43,7 +44,8 @@ fun VisualizarScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHo
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier
-                .fillMaxSize(),
+                .fillMaxSize()
+                .background(Color.White),
             //.padding(15.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -82,12 +84,12 @@ fun VisualizarScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHo
                     ) {
 
                     Spacer(modifier = Modifier.width(10.dp))
-                    BotaoIconeVec(
-                        color = Color.White,
-                        imagemicone = R.drawable.anexo,
-                        descricao = "Anexar"
-                    )
-                    Spacer(modifier = Modifier.width(10.dp))
+//                    BotaoIconeVec(
+//                        color = Color.White,
+//                        imagemicone = R.drawable.anexo,
+//                        descricao = "Anexar"
+//                    )
+//                    Spacer(modifier = Modifier.width(10.dp))
                     if (id != null) {
                         BotaoIcone(
                             color = Color.White,

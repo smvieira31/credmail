@@ -43,7 +43,7 @@ fun EnviarScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCo
     var texto by remember {
         mutableStateOf("")
     }
-    Box(modifier = Modifier.fillMaxSize()) {
+    Box(modifier = Modifier.fillMaxSize().background(Color.White)) {
         Column(
             modifier = Modifier
                 .fillMaxSize(),
@@ -102,18 +102,8 @@ fun EnviarScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCo
                         )
                     }
                     Spacer(modifier = Modifier.width(10.dp))
-                    BotaoIconeVec(color = Color.White, imagemicone = R.drawable.anexo, descricao = "Anexar")
-                    Spacer(modifier = Modifier.width(10.dp))
-                    if (id != null) {
-                        BotaoIcone(
-                            color = Color.White,
-                            imagemicone = R.drawable.anexo,
-                            descricao = "Anexar",
-                            𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,
-                            id,
-                            "excluir"
-                        )
-                    }
+//                    BotaoIconeVec(color = Color.White, imagemicone = R.drawable.anexo, descricao = "Anexar")
+//                    Spacer(modifier = Modifier.width(10.dp))
 
                 }
                 Divider(modifier = Modifier
