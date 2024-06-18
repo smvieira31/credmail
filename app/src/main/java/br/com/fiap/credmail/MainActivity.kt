@@ -17,6 +17,7 @@ import br.com.fiap.credmail.screens.CadastroViewModel
 import br.com.fiap.credmail.screens.ContatosScreen
 import br.com.fiap.credmail.screens.EmailsScreen
 import br.com.fiap.credmail.screens.EnviarScreen
+import br.com.fiap.credmail.screens.ErroScreen
 import br.com.fiap.credmail.screens.LoginScreen
 import br.com.fiap.credmail.screens.LoginViewModel
 import br.com.fiap.credmail.screens.MenuScreen
@@ -83,6 +84,7 @@ class MainActivity : ComponentActivity() {
                             val idEmail = it.arguments?.getLong("idEmail")
                             VisualizarScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿, idUsuario, idEmail)
                         }
+                        composable(route = "erro"){ ErroScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿) }
                     }
                 }
             }

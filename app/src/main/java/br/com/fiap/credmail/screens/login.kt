@@ -39,6 +39,7 @@ import br.com.fiap.credmail.componentes.CaixadeEntrada
 import br.com.fiap.credmail.componentes.TextoPrincipal
 import br.com.fiap.credmail.componentes.TextoTipo2
 import br.com.fiap.credmail.database.repository.UsuarioRepository
+import br.com.fiap.credmail.model.Usuario
 
 
 @Composable
@@ -92,11 +93,18 @@ fun LoginScreen(navController: NavController, loginViewModel: LoginViewModel) {
                         Spacer(modifier = Modifier.height(16.dp))
                         Button(
                             onClick = {
-                                val usuario = usuarioRepository.buscarPorEmail(email)
-                                Log.i("info", "home/${usuario.id}")
+                                val usuario : Usuario?
+                                usuario = usuarioRepository.buscarPorEmail(email)
+                                if(usuario==null)
+                                    navController.navigate("erro")
+                                if (usuario != null) {
+                                    Log.i("info", "home/${usuario.id}")
+                                }
                                 if(!loginViewModel.validarUsuario(usuario,password))
                                     navController.navigate("𝗹𝗼𝗴𝗶𝗻")
-                                navController.navigate("home/${usuario.id}")
+                                if (usuario != null) {
+                                    navController.navigate("home/${usuario.id}")
+                                }
                             },
                             modifier = Modifier
                                 .width(120.dp)

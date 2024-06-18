@@ -2,7 +2,6 @@ package br.com.fiap.credmail.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -38,7 +37,6 @@ import br.com.fiap.credmail.database.repository.UsuarioRepository
 fun MenuScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController, id: Long?) {
     val context = LocalContext.current
     val usuarioRepository = UsuarioRepository(context)
-
     val usuario = usuarioRepository.buscarPorId(id)
     Box(modifier = Modifier
         .fillMaxSize()
@@ -97,7 +95,7 @@ fun MenuScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCont
             ItemsMenus(imagem = R.drawable.icon_send, descricao = "Enviados", textomenu = "Enviados")
             ItemsMenus(imagem = R.drawable.lixo, descricao = "Excluídos", textomenu = "Excluídos")
             Spacer(modifier = Modifier.height(50.dp))
-            Botao(text = "Sair")
+            Botao(text = "Sair", 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿)
 
         }
     }
