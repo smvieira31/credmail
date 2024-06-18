@@ -126,10 +126,11 @@ fun CaixadeEntradaEmail(
 
 @Composable
 fun Botao(
-    text: String
-){
+        text: String,
+        𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController
+        ){
     Button(
-        onClick = {  },
+        onClick = { 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("𝗹𝗼𝗴𝗶𝗻") },
         modifier = Modifier
             .width(120.dp)
             .height(48.dp),

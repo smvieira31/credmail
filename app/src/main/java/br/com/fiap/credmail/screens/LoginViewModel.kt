@@ -21,9 +21,11 @@ class LoginViewModel: ViewModel() {
         _password.value = novoPassword
     }
 
-    fun validarUsuario(usuario: Usuario, password: String) : Boolean{
-        if(usuario.senha.equals(password))
-            return true
+    fun validarUsuario(usuario: Usuario?, password: String) : Boolean{
+        if (usuario != null) {
+            if(usuario.senha.equals(password))
+                return true
+        }
         return false
     }
 }
