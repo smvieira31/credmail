@@ -2,6 +2,7 @@ package br.com.fiap.credmail.screens
 
 import android.util.Log
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -23,6 +24,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -37,6 +39,7 @@ import br.com.fiap.credmail.componentes.CaixadeEntrada
 import br.com.fiap.credmail.componentes.TextoPrincipal
 import br.com.fiap.credmail.componentes.TextoTipo2
 import br.com.fiap.credmail.database.repository.UsuarioRepository
+import br.com.fiap.credmail.model.Usuario
 
 
 @Composable
@@ -58,7 +61,7 @@ fun LoginScreen(navController: NavController, loginViewModel: LoginViewModel) {
 
     Box(modifier = Modifier.fillMaxSize()){
         Column (
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxSize().background(Color.White),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ){
@@ -90,11 +93,18 @@ fun LoginScreen(navController: NavController, loginViewModel: LoginViewModel) {
                         Spacer(modifier = Modifier.height(16.dp))
                         Button(
                             onClick = {
-                                val usuario = usuarioRepository.buscarPorEmail(email)
-                                Log.i("info", "home/${usuario.id}")
+                                val usuario : Usuario?
+                                usuario = usuarioRepository.buscarPorEmail(email)
+                                if(usuario==null)
+                                    navController.navigate("erro")
+                                if (usuario != null) {
+                                    Log.i("info", "home/${usuario.id}")
+                                }
                                 if(!loginViewModel.validarUsuario(usuario,password))
                                     navController.navigate("𝗹𝗼𝗴𝗶𝗻")
-                                navController.navigate("home/${usuario.id}")
+                                if (usuario != null) {
+                                    navController.navigate("home/${usuario.id}")
+                                }
                             },
                             modifier = Modifier
                                 .width(120.dp)

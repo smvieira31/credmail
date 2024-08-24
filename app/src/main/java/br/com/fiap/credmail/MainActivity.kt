@@ -17,9 +17,11 @@ import br.com.fiap.credmail.screens.CadastroViewModel
 import br.com.fiap.credmail.screens.ContatosScreen
 import br.com.fiap.credmail.screens.EmailsScreen
 import br.com.fiap.credmail.screens.EnviarScreen
+import br.com.fiap.credmail.screens.ErroScreen
 import br.com.fiap.credmail.screens.LoginScreen
 import br.com.fiap.credmail.screens.LoginViewModel
 import br.com.fiap.credmail.screens.MenuScreen
+import br.com.fiap.credmail.screens.VisualizarScreen
 import br.com.fiap.credmail.ui.theme.CredmailTheme
 
 class MainActivity : ComponentActivity() {
@@ -46,7 +48,10 @@ class MainActivity : ComponentActivity() {
                             )
                         ) {
                             val id = it.arguments?.getLong("id")
-                            EmailsScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id) }
+                            if (id != null) {
+                                EmailsScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id)
+                            }
+                        }
                         composable(route = "menu/{id}",arguments = listOf(
                             navArgument(name = "id"){
                                 type = NavType.LongType
@@ -68,12 +73,24 @@ class MainActivity : ComponentActivity() {
                                 })){
                             val id = it.arguments?.getLong("id")
                             EnviarScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id)}
+                        composable(route = "ler/{idUsuario}/{idEmail}",
+                            arguments = listOf(
+                                navArgument(name = "idUsuario"){
+                                    type = NavType.LongType
+                                },navArgument(name = "idEmail"){
+                                    type = NavType.LongType
+                                })) {
+                            val idUsuario = it.arguments?.getLong("idUsuario")
+                            val idEmail = it.arguments?.getLong("idEmail")
+                            VisualizarScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿, idUsuario, idEmail)
                         }
+                        composable(route = "erro"){ ErroScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿) }
                     }
                 }
             }
         }
     }
+}
 
 //@Preview(showBackground = true, showSystemUi = true)
 //@Composable

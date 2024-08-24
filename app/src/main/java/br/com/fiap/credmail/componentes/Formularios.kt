@@ -126,10 +126,11 @@ fun CaixadeEntradaEmail(
 
 @Composable
 fun Botao(
-    text: String
-){
+        text: String,
+        𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController
+        ){
     Button(
-        onClick = {  },
+        onClick = { 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("𝗹𝗼𝗴𝗶𝗻") },
         modifier = Modifier
             .width(120.dp)
             .height(48.dp),
@@ -150,11 +151,12 @@ fun BotaoIcone(
     imagemicone: Int,
     descricao: String,
     𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController,
-    id: Long
+    id: Long,
+    rota: String
 
 ){
     Button(
-        onClick = { 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("menu/${id}") },
+        onClick = { 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("${rota}/${id}") },
         colors = ButtonDefaults.buttonColors(containerColor = color),
         modifier = Modifier.size(width = 20.dp, height = 20.dp), contentPadding = PaddingValues(0.dp), shape = RectangleShape
     ) {
@@ -255,8 +257,8 @@ fun ContatoCard(contatoAgenda: ContatoAgenda){
     }
 }
 @Composable
-fun EmailCard(emails: Email){
-    Button(onClick = { /*TODO*/ },
+fun EmailCard(emails: Email, 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController){
+    Button(onClick = { 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("ler/${emails.idUsuario}/${emails.id}")},
         modifier = Modifier
             .fillMaxWidth()
             .height(100.dp),
@@ -269,9 +271,16 @@ fun EmailCard(emails: Email){
             Column (
                 //modifier = Modifier.padding(10.dp),
                 verticalArrangement = Arrangement.Center){
-                TextoEmail(texto = emails.remetente)
-                TextoEmailipo2(texto = emails.titulo)
-                TextoEmailTipo3(texto = emails.conteudo)
+                if(emails.flagLido){
+                    TextoEmail(texto = emails.remetente, color = Color.Gray)
+                    TextoEmailipo2(texto = emails.titulo, color = Color.Gray)
+                    TextoEmailTipo3(texto = emails.conteudo, color = Color.Gray)
+                }
+                else{
+                    TextoEmail(texto = emails.remetente, color = Color.Black)
+                    TextoEmailipo2(texto = emails.titulo, color = Color.Black)
+                    TextoEmailTipo3(texto = emails.conteudo, color = Color.Black)
+                }
                 Card (colors = CardDefaults.cardColors(colorResource(id = emails.corCard))){
                     TextoTipo5Email(texto = emails.categoria, color = emails.corTexto)
                 }
@@ -309,13 +318,14 @@ fun TextoMenu(
 }
 @Composable
 fun TextoEmail(
-    texto: String
+    texto: String,
+    color: Color
 ){
     Text(text = texto,
     modifier = Modifier.padding(10.dp),
     fontSize = 20.sp,
     fontWeight = FontWeight.ExtraBold,
-    color = Color.Black,
+    color = color,
     textAlign = TextAlign.Start,
     //fontFamily = Montserrat -- Arrumar essa Fonte para todo o projeto!!
     )
@@ -336,13 +346,14 @@ fun TextoTipo2(
     )
 }@Composable
 fun TextoEmailipo2(
-    texto: String
+    texto: String,
+    color: Color
 ){
     Text(text = texto,
         modifier = Modifier.padding(10.dp),
         fontSize = 12.sp,
         fontWeight = FontWeight.ExtraBold,
-        color = Color.Black,
+        color = color,
         textAlign = TextAlign.Start,
         //fontFamily = Montserrat -- Arrumar essa Fonte para todo o projeto!!
     )
@@ -417,11 +428,12 @@ fun TextoTipo4(
 @Composable
 fun TextoEmailTipo3(
     texto: String,
+    color: Color,
 ){
     Text(text = texto,
         //modifier = Modifier.fillMaxWidth(),
         fontSize = 10.sp,
-        color = Color.Black,
+        color = color,
         textAlign = TextAlign.Start,
         fontWeight = FontWeight.Bold,
         //fontFamily = Montserrat -- Arrumar essa Fonte para todo o projeto!!
@@ -537,7 +549,7 @@ fun CabecalhoContatos(
                         color = colorResource(id = R.color.azul_200),
                         imagemicone = R.drawable.sanduiche,
                         descricao = "Menu",
-                        𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id
+                        𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿, id, "excluir"
 
                     )
                     OutlinedTextField(
@@ -613,7 +625,7 @@ fun CabecalhoEmails(
                         color = colorResource(id = R.color.azul_200),
                         imagemicone = R.drawable.sanduiche,
                         descricao = "Menu",
-                        𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id
+                        𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿, id, "menu"
                     )
                     OutlinedTextField(
                         value = title,

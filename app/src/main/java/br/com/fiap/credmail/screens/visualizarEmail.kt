@@ -1,6 +1,7 @@
 package br.com.fiap.credmail.screens
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,36 +18,34 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import br.com.fiap.credmail.R
 import br.com.fiap.credmail.componentes.BotaoIcone
 import br.com.fiap.credmail.componentes.BotaoIconeVec
 import br.com.fiap.credmail.componentes.CardVisuEmail
-import br.com.fiap.credmail.componentes.TextoContatoTipo2
-import br.com.fiap.credmail.componentes.TextoEmail
-import br.com.fiap.credmail.componentes.TextoEmailTipo3
-import br.com.fiap.credmail.componentes.TextoEmailipo2
-import br.com.fiap.credmail.componentes.TextoMenu
-import br.com.fiap.credmail.componentes.TextoTipo2
 import br.com.fiap.credmail.componentes.TextoTipo5
-import br.com.fiap.credmail.componentes.TextoTipo5Email
+import br.com.fiap.credmail.database.repository.EmailRepository
+import br.com.fiap.credmail.model.Email
 
 @Composable
-fun VisualizarScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController, id: Long?){
+fun VisualizarScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController, id: Long?, idEmail: Long?){
+    val context = LocalContext.current
+    val emailRepository = EmailRepository(context)
+    val email: Email = emailRepository.buscaEmail(idEmail)
+    emailRepository.emailLido(true,idEmail)
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier
-                .fillMaxSize(),
+                .fillMaxSize()
+                .background(Color.White),
             //.padding(15.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -71,7 +70,8 @@ fun VisualizarScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHo
                             imagemicone = R.drawable.voltar,
                             descricao = "Voltar",
                             𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,
-                            id
+                            id,
+                            "home"
                         )
                     }
                 }
@@ -84,19 +84,20 @@ fun VisualizarScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHo
                     ) {
 
                     Spacer(modifier = Modifier.width(10.dp))
-                    BotaoIconeVec(
-                        color = Color.White,
-                        imagemicone = R.drawable.anexo,
-                        descricao = "Anexar"
-                    )
-                    Spacer(modifier = Modifier.width(10.dp))
+//                    BotaoIconeVec(
+//                        color = Color.White,
+//                        imagemicone = R.drawable.anexo,
+//                        descricao = "Anexar"
+//                    )
+//                    Spacer(modifier = Modifier.width(10.dp))
                     if (id != null) {
                         BotaoIcone(
                             color = Color.White,
                             imagemicone = R.drawable.lixo,
                             descricao = "Anexar",
                             𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,
-                            id
+                            id,
+                            ""
                         )
                     }
 
@@ -113,13 +114,13 @@ fun VisualizarScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHo
                 horizontalAlignment = Alignment.Start
             ) {
                 CardVisuEmail(
-                    titulo = "Titulo Email",
-                    remetente = "Remetente",
-                    categoria = "Categoria",
-                    colorcategoria = R.color.amarelinho,
-                    colortextocategoria = R.color.amarelo,
+                    titulo = email.titulo,
+                    remetente = email.remetente,
+                    categoria = email.categoria,
+                    colorcategoria = email.corCard,
+                    colortextocategoria = email.corTexto,
                     dataemail = "31/10/2023",
-                    conteudo = "O conteúdo do email vai aqui maninho"
+                    conteudo = email.conteudo
                 )
 
             }

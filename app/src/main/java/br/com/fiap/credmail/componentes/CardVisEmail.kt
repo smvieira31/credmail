@@ -18,7 +18,6 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import br.com.fiap.credmail.R
-import java.util.Date
 
 @Composable
 fun CardVisuEmail(
@@ -41,7 +40,7 @@ fun CardVisuEmail(
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.Start
         ) {
-            TextoEmail(texto = titulo)
+            TextoEmail(texto = titulo, Color.Black)
             Card(colors = CardDefaults.cardColors(colorResource(id = colorcategoria))) {
                 TextoTipo5Email(texto = categoria, color = colortextocategoria)
             }
@@ -69,7 +68,7 @@ fun CardVisuEmail(
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.Start
             ) {
-                TextoEmailTipo3(texto = conteudo)
+                TextoEmailTipo3(texto = conteudo, color = Color.Gray)
             }
         }
     }

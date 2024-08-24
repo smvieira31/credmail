@@ -2,7 +2,6 @@ package br.com.fiap.credmail.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,28 +19,32 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import br.com.fiap.credmail.R
+import br.com.fiap.credmail.componentes.Botao
 import br.com.fiap.credmail.componentes.ItemsMenus
 import br.com.fiap.credmail.componentes.TextoPrincipal
 import br.com.fiap.credmail.componentes.TextoTipo3
+import br.com.fiap.credmail.database.repository.UsuarioRepository
 
 @Composable
 //fun MenuScreen(navController: NavController) {
 fun MenuScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController, id: Long?) {
-
+    val context = LocalContext.current
+    val usuarioRepository = UsuarioRepository(context)
+    val usuario = usuarioRepository.buscarPorId(id)
     Box(modifier = Modifier
         .fillMaxSize()
         .background(color = colorResource(id = R.color.azul_200))) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(45.dp)
-                .border(1.dp, Color.Red),
+                .padding(45.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             //Header
@@ -78,19 +81,21 @@ fun MenuScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCont
                 )
             }
             Row {
-                TextoPrincipal(texto = "Sua Conta")
+                TextoPrincipal(texto = usuario.nome)
             }
             Row {
-                TextoTipo3(texto = "seuemail@example.com")
+                TextoTipo3(texto = usuario.email)
             }
             Spacer(modifier = Modifier.height(16.dp))
             HorizontalDivider(modifier = Modifier
                 .height(1.dp)
                 .width(300.dp), color = Color.LightGray)
             Spacer(modifier = Modifier.height(16.dp))
-            ItemsMenus(imagem = R.drawable.icon_email, descricao = "Enviados", textomenu = "Enviados")
+            ItemsMenus(imagem = R.drawable.icon_email, descricao = "Entrada", textomenu = "Entrada")
             ItemsMenus(imagem = R.drawable.icon_send, descricao = "Enviados", textomenu = "Enviados")
             ItemsMenus(imagem = R.drawable.lixo, descricao = "Excluídos", textomenu = "Excluídos")
+            Spacer(modifier = Modifier.height(50.dp))
+            Botao(text = "Sair", 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿)
 
         }
     }

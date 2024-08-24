@@ -15,11 +15,16 @@ class UsuarioRepository(context: Context) {
         return db.buscaTodos()
     }
 
-    fun buscarPorId(id: Int) : Usuario{
+    fun buscarPorId(id: Long?) : Usuario{
         return db.findById(id)
     }
 
-    fun buscarPorEmail(email: String): Usuario {
-        return db.findByEmail(email)
+    fun buscarPorEmail(email: String): Usuario? {
+        val usuario: Usuario
+        usuario = db.findByEmail(email)
+        if(usuario != null)
+            return usuario
+        else
+            return null
     }
 }
