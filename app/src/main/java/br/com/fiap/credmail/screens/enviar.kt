@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -35,6 +36,7 @@ import br.com.fiap.credmail.componentes.BotaoIcone
 import br.com.fiap.credmail.componentes.BotaoIconeVec
 import br.com.fiap.credmail.componentes.CabecalhoEmails
 import br.com.fiap.credmail.componentes.CaixadeEntradaEmail
+import br.com.fiap.credmail.componentes.TextoMenu
 import br.com.fiap.credmail.componentes.TextoTipo2
 import br.com.fiap.credmail.componentes.TextoTipo2noAlig
 
@@ -50,9 +52,6 @@ fun EnviarScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCo
                 //.padding(15.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            if (id != null) {
-                CabecalhoEmails(titulo = "Enviar Email", 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿, id)
-            }
             Column {
                 //Aqui é o cabeçalho
                 Row(
@@ -74,12 +73,12 @@ fun EnviarScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCo
                         )
                     }
 
-                    TextoTipo2(texto = "Enviar e -mail")
+                    TextoMenu(texto = "Enviar e -mail")
                 }
 
             }
             Column (
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxHeight()
             ) {
                 //Aqui é a parte inicial do email
                 Row(
@@ -139,7 +138,7 @@ fun EnviarScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCo
                         texto = letra },
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(250.dp),
+                            .height(300.dp),
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = Color.White,
                             unfocusedBorderColor = Color.White,
@@ -162,7 +161,7 @@ fun EnviarScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCo
                 }
                 Column (modifier = Modifier
                     .fillMaxWidth()
-                    .height(200.dp),
+                    .height(300.dp),
                     //.background(color = Color.Cyan),
                     verticalArrangement = Arrangement.Bottom
                 ){

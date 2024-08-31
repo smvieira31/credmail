@@ -13,7 +13,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -28,6 +31,7 @@ import androidx.navigation.NavHostController
 import br.com.fiap.credmail.R
 import br.com.fiap.credmail.componentes.Botao
 import br.com.fiap.credmail.componentes.ItemsMenus
+import br.com.fiap.credmail.componentes.TextoMenu
 import br.com.fiap.credmail.componentes.TextoPrincipal
 import br.com.fiap.credmail.componentes.TextoTipo3
 import br.com.fiap.credmail.database.repository.UsuarioRepository
@@ -75,13 +79,15 @@ fun MenuScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCont
             ){
                 Image(
                     painter = painterResource(id = R.drawable.user),
-                    contentDescription = "voltar",
+                    contentDescription = "User",
                     modifier = Modifier
                         .size(100.dp)
                 )
             }
             Row {
-                TextoPrincipal(texto = usuario.nome)
+                TextoMenu(texto = usuario.nome)
+                Icon(imageVector = Icons.Default.Edit, contentDescription = "editar", tint = Color.Black)
+
             }
             Row {
                 TextoTipo3(texto = usuario.email)
@@ -94,6 +100,8 @@ fun MenuScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCont
             ItemsMenus(imagem = R.drawable.icon_email, descricao = "Entrada", textomenu = "Entrada")
             ItemsMenus(imagem = R.drawable.icon_send, descricao = "Enviados", textomenu = "Enviados")
             ItemsMenus(imagem = R.drawable.lixo, descricao = "Excluídos", textomenu = "Excluídos")
+            ItemsMenus(imagem = R.drawable.spam, descricao = "Spam", textomenu = "Spam")
+            ItemsMenus(imagem = R.drawable.lixo, descricao = "Configurações", textomenu = "Configurações")
             Spacer(modifier = Modifier.height(50.dp))
             Botao(text = "Sair", 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿)
 
