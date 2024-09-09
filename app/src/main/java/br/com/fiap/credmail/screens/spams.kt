@@ -34,7 +34,7 @@ import br.com.fiap.credmail.database.repository.EmailRepository
 
 
 @Composable
-fun SpamsScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController, id: Long) {
+fun SpamsScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController, id: Long?) {
 
     val context = LocalContext.current
     val emailRepository = EmailRepository(context)

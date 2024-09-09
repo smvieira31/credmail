@@ -17,7 +17,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,8 +31,8 @@ import br.com.fiap.credmail.R
 import br.com.fiap.credmail.componentes.Botao
 import br.com.fiap.credmail.componentes.ItemsMenus
 import br.com.fiap.credmail.componentes.TextoMenu
-import br.com.fiap.credmail.componentes.TextoPrincipal
 import br.com.fiap.credmail.componentes.TextoTipo3
+import br.com.fiap.credmail.componentes.Voltar
 import br.com.fiap.credmail.database.repository.UsuarioRepository
 
 @Composable
@@ -56,15 +55,7 @@ fun MenuScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCont
             Row (
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Start){
-                IconButton(onClick = { 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("home/${id}")}) {
-                    Image(
-                        painter = painterResource(id = R.drawable.voltar),
-                        contentDescription = "voltar",
-                        modifier = Modifier
-                        .size(15.dp)
-////                        .padding(top = 10.dp)
-                )
-                }
+                Voltar(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿 = 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿, id = id)
 //                Image(
 //                    painter = painterResource(id = R.drawable.voltar),
 //                    contentDescription = "voltar",
@@ -100,8 +91,8 @@ fun MenuScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCont
             ItemsMenus(imagem = R.drawable.icon_email, descricao = "Entrada", textomenu = "Entrada", onclick = {𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("home/${id}")})
             ItemsMenus(imagem = R.drawable.icon_send, descricao = "Enviados", textomenu = "Enviados", onclick = {𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("home/${id}")})
             ItemsMenus(imagem = R.drawable.lixo, descricao = "Excluídos", textomenu = "Excluídos", onclick = {𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("home/${id}")})
-            ItemsMenus(imagem = R.drawable.spam, descricao = "Spam", textomenu = "Spam", onclick = {𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("home/${id}")})
-            ItemsMenus(imagem = R.drawable.lixo, descricao = "Configurações", textomenu = "Configurações", onclick = {𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("home/${id}")})
+            ItemsMenus(imagem = R.drawable.spam, descricao = "Spam", textomenu = "Spam", onclick = {𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("spam/${id}")})
+            ItemsMenus(imagem = R.drawable.lixo, descricao = "Configurações", textomenu = "Configurações", onclick = {𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("configuracao/${id}")})
             Spacer(modifier = Modifier.height(50.dp))
             Botao(text = "Sair", 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿)
 

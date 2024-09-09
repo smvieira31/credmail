@@ -15,7 +15,7 @@ interface EmailDao {
     fun salvarEmail(email: Email): Long
 
     @Query(value = "SELECT * FROM Email WHERE id_usuario = :idUsuario")
-    fun listByIdUsuario(idUsuario: Long): List<Email>;
+    fun listByIdUsuario(idUsuario: Long?): List<Email>;
 
     @Query(value = "SELECT * FROM Email where id_email = :id")
     fun findById(id: Long?) : Email;

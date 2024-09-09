@@ -15,7 +15,7 @@ class EmailRepository(context: Context) {
         return db.salvarEmail(email)
     }
 
-    fun listByIdUsuario(idUsuario: Long): List<Email>{
+    fun listByIdUsuario(idUsuario: Long?): List<Email>{
         return db.listByIdUsuario(idUsuario)
     }
 
