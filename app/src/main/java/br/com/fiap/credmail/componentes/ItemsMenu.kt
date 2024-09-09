@@ -19,13 +19,13 @@ import br.com.fiap.credmail.R
 
 @Composable
 fun ItemsMenus(
-    //onclick: () -> Unit,
+    onclick: () -> Unit,
     imagem: Int,
     descricao: String,
     textomenu: String) {
 
     Button(
-        onClick = { },
+        onClick = onclick,
         modifier = Modifier
             .fillMaxWidth(),
         //.height(100.dp),

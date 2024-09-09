@@ -156,8 +156,8 @@ fun CadastroScreen(cadastroViewModel: CadastroViewModel, navController: NavContr
         }
     }
 }
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun CadastroScreenPreview(navController: NavController) {
-    CadastroScreen(CadastroViewModel(),navController)
-}
+//@Preview(showBackground = true, showSystemUi = true)
+//@Composable
+//fun CadastroScreenPreview(navController: NavController) {
+//    CadastroScreen(CadastroViewModel(),navController)
+//}
