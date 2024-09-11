@@ -21,19 +21,20 @@ import br.com.fiap.credmail.R
 
 @Composable
 fun CaixadeEntradaEmail(
+    value: String,
     color: Color,
     placeHolder: String,
-    keyboardType: KeyboardType
+    keyboardType: KeyboardType,
+    atualizaValor: (String) -> Unit
 ) {
     var texto by remember {
         mutableStateOf("")
     }
 
+
     OutlinedTextField(
-        value = texto,
-        onValueChange = {letra ->
-            texto = letra
-        },
+        value = value,
+        onValueChange = atualizaValor,
         modifier = Modifier.width(200.dp),
         placeholder = {
             Text(

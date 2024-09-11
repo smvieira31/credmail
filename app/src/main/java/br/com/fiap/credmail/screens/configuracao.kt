@@ -1,5 +1,6 @@
 package br.com.fiap.credmail.screens
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -9,18 +10,21 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
@@ -30,13 +34,11 @@ import br.com.fiap.credmail.componentes.CaixadeEntrada
 import br.com.fiap.credmail.componentes.CaixadeEntradaEmail
 import br.com.fiap.credmail.componentes.NovaCaixadeEntrada
 import br.com.fiap.credmail.componentes.TextoMenu
-import br.com.fiap.credmail.componentes.Voltar
 
 
 @Composable
-fun ConfiguracoesScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController, id: Long?)
-{
-    var textNomeSobrenome: MutableState<String> = remember {
+fun ConfiguracoesScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController, id: Long?){
+    var textNomeSobrenome by remember {
         mutableStateOf("")
     }
 
@@ -57,7 +59,13 @@ fun ConfiguracoesScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: Na
                     horizontalArrangement = Arrangement.SpaceEvenly
 
                 ) {
-                    Voltar(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿 = 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿, id = id)
+                    Image(
+                        painter = painterResource(id = R.drawable.voltar),
+                        contentDescription = "voltar",
+                        modifier = Modifier
+                            .size(15.dp)
+////                        .padding(top = 10.dp)
+                    )
                     TextoMenu(texto = "Configurações")
                 }
             Column (
@@ -69,9 +77,9 @@ fun ConfiguracoesScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: Na
             ){
                 TextoMenu(texto = "Alterar Nome e Sobrenome")
                 TextField(
-                    value = textNomeSobrenome.value,
+                    value = textNomeSobrenome,
                     onValueChange = { novoValor ->
-                        textNomeSobrenome.value = novoValor
+                        textNomeSobrenome = novoValor
                     },
                     modifier = Modifier.fillMaxWidth(),
                     keyboardOptions = KeyboardOptions(
@@ -82,11 +90,11 @@ fun ConfiguracoesScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: Na
                     },
                     shape = RoundedCornerShape(8.dp)
                 )
-                CaixadeEntrada(placeHolder = "Digite um nome de usuário", keyboardType = KeyboardType.Text,value = textNomeSobrenome.value, atualizaValor = { novoValor ->
-                    textNomeSobrenome.value = novoValor })
-                CaixadeEntradaEmail(color = Color.White, placeHolder = "Olá", keyboardType = KeyboardType.Text)
-                NovaCaixadeEntrada(placeHolder = "Digite um nome de usuário", keyboardType = KeyboardType.Text,value = textNomeSobrenome.value, atualizaValor = { novoValor ->
-                    textNomeSobrenome.value = novoValor })
+                CaixadeEntrada(placeHolder = "Digite um nome de usuário", keyboardType = KeyboardType.Text,value = textNomeSobrenome, atualizaValor = { novoValor ->
+                    textNomeSobrenome = novoValor })
+                CaixadeEntradaEmail(value = textNomeSobrenome, color = Color.White, placeHolder = "Olá", keyboardType = KeyboardType.Text, atualizaValor = {textNomeSobrenome = it})
+                NovaCaixadeEntrada(placeHolder = "Digite um nome de usuário", keyboardType = KeyboardType.Text,value = textNomeSobrenome, atualizaValor = { novoValor ->
+                    textNomeSobrenome = novoValor })
 
             }
             }
@@ -95,8 +103,9 @@ fun ConfiguracoesScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: Na
 
 }
 
-//@Preview(showBackground = true, showSystemUi = true)
-//@Composable
-//fun ConfigScreenPreview() {
-//    ConfiguracoesScreen()
-//}
+/*
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun ConfigScreenPreview() {
+    ConfiguracoesScreen()
+}*/
