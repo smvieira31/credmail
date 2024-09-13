@@ -33,11 +33,8 @@ import androidx.navigation.NavHostController
 import br.com.fiap.credmail.R
 import br.com.fiap.credmail.componentes.BarraInferior
 import br.com.fiap.credmail.componentes.BotaoIcone
-import br.com.fiap.credmail.componentes.BotaoIconeVec
-import br.com.fiap.credmail.componentes.CabecalhoEmails
 import br.com.fiap.credmail.componentes.CaixadeEntradaEmail
 import br.com.fiap.credmail.componentes.TextoMenu
-import br.com.fiap.credmail.componentes.TextoTipo2
 import br.com.fiap.credmail.componentes.TextoTipo2noAlig
 
 @Composable
@@ -45,7 +42,16 @@ fun EnviarScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCo
     var texto by remember {
         mutableStateOf("")
     }
-    Box(modifier = Modifier.fillMaxSize().background(Color.White)) {
+    var assunto by remember {
+        mutableStateOf("")
+    }
+    var destinatario by remember {
+        mutableStateOf("")
+    }
+
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .background(Color.White)) {
         Column(
             modifier = Modifier
                 .fillMaxSize(),
@@ -116,7 +122,7 @@ fun EnviarScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCo
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     TextoTipo2noAlig(texto = "Para")
-                    CaixadeEntradaEmail(color = Color.White, "email@example.com", keyboardType = KeyboardType.Text)
+                    CaixadeEntradaEmail(value = destinatario, color = Color.White, "email@example.com", keyboardType = KeyboardType.Text, atualizaValor = { destinatario = it})
                 }
                 Row(
                     modifier = Modifier
@@ -128,7 +134,7 @@ fun EnviarScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCo
 
                 ) {
                     TextoTipo2noAlig(texto = "Assunto")
-                    CaixadeEntradaEmail(color = Color.LightGray, placeHolder = "Digite", keyboardType = KeyboardType.Text)
+                    CaixadeEntradaEmail(value= assunto,color = Color.LightGray, placeHolder = "Digite", keyboardType = KeyboardType.Text, atualizaValor = {assunto = it})
 
                 //Text(text = "Seu Assunto Aqui")
                 }

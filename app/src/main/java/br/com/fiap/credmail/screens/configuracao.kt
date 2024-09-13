@@ -40,22 +40,22 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import br.com.fiap.credmail.R
 import br.com.fiap.credmail.componentes.BotaoIcone
 import br.com.fiap.credmail.componentes.BotaoIconesNavi
 import br.com.fiap.credmail.componentes.CaixadeEntrada
 import br.com.fiap.credmail.componentes.CaixadeEntradaConfig
 import br.com.fiap.credmail.componentes.CaixadeEntradaEmail
+import br.com.fiap.credmail.componentes.NovaCaixadeEntrada
 import br.com.fiap.credmail.componentes.TextoMenu
 import br.com.fiap.credmail.database.repository.EmailRepository
 import br.com.fiap.credmail.database.repository.UsuarioRepository
 
 
 @Composable
-fun ConfiguracoesScreen(
-
-){
-    var textNomeSobrenome: MutableState<String> = remember {
+fun ConfiguracoesScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController, id: Long?){
+    var textNomeSobrenome by remember {
         mutableStateOf("")
     }
 
@@ -76,16 +76,16 @@ fun ConfiguracoesScreen(
                 verticalAlignment    = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceEvenly
 
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.voltar),
-                    contentDescription = "voltar",
-                    modifier = Modifier
-                        .size(15.dp)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.voltar),
+                        contentDescription = "voltar",
+                        modifier = Modifier
+                            .size(15.dp)
 ////                        .padding(top = 10.dp)
-                )
-                TextoMenu(texto = "Configurações")
-            }
+                    )
+                    TextoMenu(texto = "Configurações")
+                }
             Column (
                 modifier = Modifier
                     .fillMaxWidth()
@@ -171,14 +171,15 @@ fun ConfiguracoesScreen(
 
 
             }
-        }
+            }
 
-    }
+        }
 
 }
 
+/*
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun ConfigScreenPreview() {
     ConfiguracoesScreen()
-}
+}*/

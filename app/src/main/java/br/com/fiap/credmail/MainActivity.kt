@@ -14,6 +14,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import br.com.fiap.credmail.screens.CadastroScreen
 import br.com.fiap.credmail.screens.CadastroViewModel
+import br.com.fiap.credmail.screens.ConfiguracoesScreen
 import br.com.fiap.credmail.screens.ContatosScreen
 import br.com.fiap.credmail.screens.EmailsScreen
 import br.com.fiap.credmail.screens.EnviarScreen
@@ -21,6 +22,7 @@ import br.com.fiap.credmail.screens.ErroScreen
 import br.com.fiap.credmail.screens.LoginScreen
 import br.com.fiap.credmail.screens.LoginViewModel
 import br.com.fiap.credmail.screens.MenuScreen
+import br.com.fiap.credmail.screens.SpamsScreen
 import br.com.fiap.credmail.screens.VisualizarScreen
 import br.com.fiap.credmail.ui.theme.CredmailTheme
 
@@ -83,6 +85,22 @@ class MainActivity : ComponentActivity() {
                             val idUsuario = it.arguments?.getLong("idUsuario")
                             val idEmail = it.arguments?.getLong("idEmail")
                             VisualizarScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿, idUsuario, idEmail)
+                        }
+                        composable(route = "configuracao/{id}",
+                            arguments = listOf(
+                                navArgument(name = "id"){
+                                    type = NavType.LongType
+                                })){
+                            val id = it.arguments?.getLong("id")
+                            ConfiguracoesScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id)
+                        }
+                        composable(route = "spam/{id}",
+                            arguments = listOf(
+                                navArgument(name = "id"){
+                                    type = NavType.LongType
+                                })){
+                            val id = it.arguments?.getLong("id")
+                            SpamsScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id)
                         }
                         composable(route = "erro"){ ErroScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿) }
                     }
