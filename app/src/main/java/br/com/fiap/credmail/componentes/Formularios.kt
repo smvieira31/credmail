@@ -1,5 +1,6 @@
 package br.com.fiap.credmail.componentes
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -41,7 +42,8 @@ import br.com.fiap.credmail.repository.getContatosByNome
 fun CabecalhoContatos(
         titulo: String,
         𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController,
-        id: Long
+        id: Long,
+        corEscolhida: Long
 
     ) {
         var title by remember {
@@ -56,7 +58,7 @@ fun CabecalhoContatos(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(180.dp),
-            colors = CardDefaults.cardColors(containerColor = colorResource(id = R.color.azul_200)),
+            colors = CardDefaults.cardColors(containerColor = Color(corEscolhida)),
             shape = RoundedCornerShape(bottomStart = 16.dp, bottomEnd = 16.dp)
         ) {
             Column(
@@ -117,7 +119,8 @@ fun CabecalhoContatos(
 fun CabecalhoEmails(
         titulo: String,
         𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController,
-        id: Long
+        id: Long,
+        corEscolhida: Long
 
     ) {
         var title by remember {
@@ -132,7 +135,7 @@ fun CabecalhoEmails(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(180.dp),
-            colors = CardDefaults.cardColors(containerColor = colorResource(id = R.color.azul_200)),
+            colors = CardDefaults.cardColors(containerColor = Color(corEscolhida)),
             shape = RoundedCornerShape(bottomStart = 16.dp, bottomEnd = 16.dp)
         ) {
             Column(

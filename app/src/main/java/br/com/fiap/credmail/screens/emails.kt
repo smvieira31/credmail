@@ -51,6 +51,12 @@ fun EmailsScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCo
     var listemailbyname by remember {
         mutableStateOf(emailRepository.listByIdUsuario(id))
     }
+
+    /* TODO */
+    /*colocar a variavel de cor escolhida p pssa */
+
+    var corEscolhida = 0xFFDAC8CD
+
     Box(modifier = Modifier.fillMaxSize()){
         Column (
             modifier = Modifier.fillMaxSize().background(Color.White),
@@ -58,7 +64,7 @@ fun EmailsScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCo
         ){
             //Header
             if (id != null) {
-                CabecalhoEmails(titulo = "Todos os e-mails", 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id)
+                CabecalhoEmails(titulo = "Todos os e-mails", 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id, corEscolhida)
             }
 
             Column(
@@ -126,7 +132,7 @@ fun EmailsScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCo
                     verticalArrangement = Arrangement.Bottom
                 ){
                     if (id != null) {
-                        BarraInferior(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id)
+                        BarraInferior(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id, corEscolhida)
                     }
                 }
             }

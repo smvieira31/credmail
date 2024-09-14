@@ -41,9 +41,16 @@ fun MenuScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCont
     val context = LocalContext.current
     val usuarioRepository = UsuarioRepository(context)
     val usuario = usuarioRepository.buscarPorId(id)
+
+
+    /* TODO */
+    /*colocar a variavel de cor escolhida p pssa */
+
+    var corEscolhida = 0xFFDAC8CD
+
     Box(modifier = Modifier
         .fillMaxSize()
-        .background(color = colorResource(id = R.color.azul_200))) {
+        .background(Color(corEscolhida))) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -56,13 +63,6 @@ fun MenuScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCont
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Start){
                 Voltar(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿 = 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿, id = id)
-//                Image(
-//                    painter = painterResource(id = R.drawable.voltar),
-//                    contentDescription = "voltar",
-//                    modifier = Modifier
-//                        .size(15.dp)
-////                        .padding(top = 10.dp)
-//                )
             }
             Row (
                 modifier = Modifier.fillMaxWidth(),
@@ -88,11 +88,11 @@ fun MenuScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCont
                 .height(1.dp)
                 .width(300.dp), color = Color.LightGray)
             Spacer(modifier = Modifier.height(16.dp))
-            ItemsMenus(imagem = R.drawable.icon_email, descricao = "Entrada", textomenu = "Entrada", onclick = {𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("home/${id}")})
-            ItemsMenus(imagem = R.drawable.icon_send, descricao = "Enviados", textomenu = "Enviados", onclick = {𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("home/${id}")})
-            ItemsMenus(imagem = R.drawable.lixo, descricao = "Excluídos", textomenu = "Excluídos", onclick = {𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("home/${id}")})
-            ItemsMenus(imagem = R.drawable.spam, descricao = "Spam", textomenu = "Spam", onclick = {𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("spam/${id}")})
-            ItemsMenus(imagem = R.drawable.lixo, descricao = "Configurações", textomenu = "Configurações", onclick = {𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("configuracao/${id}")})
+            ItemsMenus(imagem = R.drawable.icon_email, descricao = "Entrada", textomenu = "Entrada", onclick = {𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("home/${id}")}, corEscolhida = corEscolhida)
+            ItemsMenus(imagem = R.drawable.icon_send, descricao = "Enviados", textomenu = "Enviados", onclick = {𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("home/${id}")}, corEscolhida = corEscolhida)
+            ItemsMenus(imagem = R.drawable.lixo, descricao = "Excluídos", textomenu = "Excluídos", onclick = {𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("home/${id}")}, corEscolhida = corEscolhida)
+            ItemsMenus(imagem = R.drawable.spam, descricao = "Spam", textomenu = "Spam", onclick = {𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("spam/${id}")}, corEscolhida= corEscolhida)
+            ItemsMenus(imagem = R.drawable.config, descricao = "Configurações", textomenu = "Configurações", onclick = {𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("configuracao/${id}")}, corEscolhida = corEscolhida)
             Spacer(modifier = Modifier.height(50.dp))
             Botao(text = "Sair", 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿)
 

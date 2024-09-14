@@ -9,5 +9,15 @@
     <color name="vermelho">#D2325D</color>
     <color name="outroazul">#047382</color>
     <color name="outroazulzinho">#8BE0EB</color>
+    <color name="laranjinha">#FFE1C2</color>
+    <color name="laranja">#AF5C09</color>
+    <color name="verdinho">#A3FFAC</color>
+    <color name="verde">#00690B</color>
+    <color name="aquaclaro">#95FFE1</color>
+    <color name="aqua">#156754</color>
+    <color name="cinzaclaro">#CCCCCC</color>
+    <color name="cinza">#373737</color>
+    <color name="lilas">#C5B6D9</color>
+    <color name="roxo">#4600A0</color>
 
 </resources>

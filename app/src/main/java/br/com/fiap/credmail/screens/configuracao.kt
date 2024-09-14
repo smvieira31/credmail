@@ -34,7 +34,7 @@ import androidx.navigation.NavHostController
 import br.com.fiap.credmail.R
 import br.com.fiap.credmail.componentes.CaixadeEntradaConfig
 import br.com.fiap.credmail.componentes.TextoMenu
-
+import br.com.fiap.credmail.componentes.Voltar
 
 
 @Composable
@@ -43,13 +43,13 @@ fun ConfiguracoesScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: Na
         mutableStateOf("")
     }
 
-    var cor_escolhida = 0xFFDAC8CD
+    var corEscolhida = 0xFFDAC8CD
 
 
 
     Box(modifier = Modifier
         .fillMaxSize()
-        .background(Color(cor_escolhida))
+        .background(Color(corEscolhida))
     ) {
         Column(
             modifier = Modifier
@@ -66,13 +66,8 @@ fun ConfiguracoesScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: Na
                 horizontalArrangement = Arrangement.SpaceEvenly
 
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.voltar),
-                    contentDescription = "voltar",
-                    modifier = Modifier
-                        .size(15.dp)
-////                        .padding(top = 10.dp)
-                )
+
+                Voltar(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id)
                 TextoMenu(texto = "Configurações")
             }
             Column (

@@ -29,13 +29,16 @@ import br.com.fiap.credmail.repository.getAllContatos
 @Composable
 fun ContatosScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController, id: Long?) {
 
+    /* TODO */
+    /*colocar a variavel de cor escolhida p pssa */
+    var corEscolhida = 0xFFDAC8CD
     Box(modifier = Modifier.fillMaxSize()){
         Column (
             modifier = Modifier.fillMaxSize().background(Color.White),
             horizontalAlignment = Alignment.CenterHorizontally
         ){
             if (id != null) {
-                CabecalhoContatos(titulo = "Contatos",𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id)
+                CabecalhoContatos(titulo = "Contatos",𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id, corEscolhida)
             }
             //Header
 //            Column  {
@@ -113,7 +116,7 @@ fun ContatosScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHost
                 verticalArrangement = Arrangement.Bottom
             ){
                 if (id != null) {
-                    BarraInferior(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id)
+                    BarraInferior(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id,corEscolhida)
                 }
             }
         }

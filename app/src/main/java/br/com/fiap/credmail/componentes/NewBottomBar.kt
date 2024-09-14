@@ -16,6 +16,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -24,13 +25,13 @@ import br.com.fiap.credmail.R
 
 
 @Composable
-fun BarraInferior(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController, id: Long) {
+fun BarraInferior(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController, id: Long, corEscolhida: Long) {
 
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .height(70.dp),
-        colors = CardDefaults.cardColors(containerColor = colorResource(id = R.color.azul_200)),
+        colors = CardDefaults.cardColors(containerColor = Color(corEscolhida)),
         shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
     ) {
         Row (
@@ -39,7 +40,7 @@ fun BarraInferior(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostC
             verticalAlignment = Alignment.CenterVertically
         ){
             Button(onClick = { 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("home/${id}") },
-                colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.azul_200)),
+                colors = ButtonDefaults.buttonColors(containerColor = Color(corEscolhida)),
                 //modifier = Modifier
             ) {
                 Image(
@@ -52,7 +53,7 @@ fun BarraInferior(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostC
 
             }
             Button(onClick = { 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("contatos/${id}") },
-                colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.azul_200)),
+                colors = ButtonDefaults.buttonColors(containerColor = Color(corEscolhida)),
                 //modifier = Modifier
             ) {
                 Image(
@@ -65,7 +66,7 @@ fun BarraInferior(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostC
 
             }
             Button(onClick = { 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("enviar/${id}") },
-                colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.azul_200)),
+                colors = ButtonDefaults.buttonColors(containerColor = Color(corEscolhida)),
                 //modifier = Modifier
             ) {
                 Image(

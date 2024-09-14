@@ -11,6 +11,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -22,7 +23,8 @@ fun ItemsMenus(
     onclick: () -> Unit,
     imagem: Int,
     descricao: String,
-    textomenu: String) {
+    textomenu: String,
+    corEscolhida: Long) {
 
     Button(
         onClick = onclick,
@@ -31,7 +33,7 @@ fun ItemsMenus(
         //.height(100.dp),
         shape = RectangleShape,
         contentPadding = PaddingValues(0.dp),
-        colors = ButtonDefaults.buttonColors(colorResource(id = R.color.azul_200))
+        colors = ButtonDefaults.buttonColors(Color(corEscolhida))
 
     ) {
         Row(

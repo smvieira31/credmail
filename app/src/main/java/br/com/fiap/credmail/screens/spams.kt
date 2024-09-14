@@ -41,6 +41,10 @@ fun SpamsScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCon
     var listemailbyname by remember {
         mutableStateOf(emailRepository.listByIdUsuario(id))
     }
+    /* TODO */
+    /*colocar a variavel de cor escolhida p pssa */
+    var corEscolhida = 0xFFDAC8CD
+
     Box(modifier = Modifier.fillMaxSize()){
         Column (
             modifier = Modifier.fillMaxSize().background(Color.White),
@@ -48,13 +52,13 @@ fun SpamsScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCon
         ){
             //Header
             if (id != null) {
-                CabecalhoEmails(titulo = "Spams", 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id)
+                CabecalhoEmails(titulo = "Spams", 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id, corEscolhida)
             }
 
             Column(modifier = Modifier
                 .fillMaxWidth()
                 //.background(Color.Red)
-                .height(550.dp)){
+                .height(700.dp)){
                 LazyColumn (){
                     items(listemailbyname){
                         EmailCard(emails = it,𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿)
@@ -62,12 +66,12 @@ fun SpamsScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCon
                 }
                 Column (modifier = Modifier
                     .fillMaxWidth()
-                    .height(300.dp),
+                    .height(400.dp),
                     //.background(color = Color.Cyan),
                     verticalArrangement = Arrangement.Bottom
                 ){
                     if (id != null) {
-                        BarraInferior(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id)
+                        BarraInferior(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id,corEscolhida)
                     }
                 }
             }
