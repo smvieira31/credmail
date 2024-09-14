@@ -93,7 +93,7 @@ fun MenuScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCont
             ItemsMenus(imagem = R.drawable.lixo, descricao = "Excluídos", textomenu = "Excluídos", onclick = {𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("home/${id}")}, corEscolhida = corEscolhida)
             ItemsMenus(imagem = R.drawable.spam, descricao = "Spam", textomenu = "Spam", onclick = {𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("spam/${id}")}, corEscolhida= corEscolhida)
             ItemsMenus(imagem = R.drawable.config, descricao = "Configurações", textomenu = "Configurações", onclick = {𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("configuracao/${id}")}, corEscolhida = corEscolhida)
-            ItemsMenus(imagem = R.drawable.mais, descricao = "Adicionar Categoria", textomenu = "Adicionar Categoria", onclick = {𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("configuracao/${id}")}, corEscolhida = corEscolhida)
+            ItemsMenus(imagem = R.drawable.mais, descricao = "Adicionar Categoria", textomenu = "Adicionar Categoria", onclick = {𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("categoria/${id}")}, corEscolhida = corEscolhida)
             Spacer(modifier = Modifier.height(50.dp))
             Botao(text = "Sair", 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿)
 

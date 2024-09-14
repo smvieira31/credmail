@@ -14,6 +14,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import br.com.fiap.credmail.screens.CadastroScreen
 import br.com.fiap.credmail.screens.CadastroViewModel
+import br.com.fiap.credmail.screens.CategoriasScreen
 import br.com.fiap.credmail.screens.ConfiguracoesScreen
 import br.com.fiap.credmail.screens.ContatosScreen
 import br.com.fiap.credmail.screens.EmailsScreen
@@ -101,6 +102,14 @@ class MainActivity : ComponentActivity() {
                                 })){
                             val id = it.arguments?.getLong("id")
                             SpamsScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id)
+                        }
+                        composable(route = "categoria/{id}",
+                            arguments = listOf(
+                                navArgument(name = "id"){
+                                    type = NavType.LongType
+                                })){
+                            val id = it.arguments?.getLong("id")
+                            CategoriasScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id)
                         }
                         composable(route = "erro"){ ErroScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿) }
                     }

@@ -50,7 +50,7 @@ import br.com.fiap.credmail.repository.getCoresCategoria
 
 
 @Composable
-fun CategoriasScreen(){
+fun CategoriasScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController, id: Long?){
 
     var textNomeCategoria by remember {
         mutableStateOf("")
@@ -75,14 +75,14 @@ fun CategoriasScreen(){
                 horizontalArrangement = Arrangement.SpaceEvenly
 
             ) {
-
-                Image(
-                    painter = painterResource(id = R.drawable.voltar),
-                    contentDescription = "voltar",
-                    modifier = Modifier
-                        .size(15.dp)
-////                        .padding(top = 10.dp)
-                )
+                Voltar(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id)
+//                Image(
+//                    painter = painterResource(id = R.drawable.voltar),
+//                    contentDescription = "voltar",
+//                    modifier = Modifier
+//                        .size(15.dp)
+//////                        .padding(top = 10.dp)
+//                )
                 TextoMenu(texto = "Criar Categoria")
             }
             Column (
@@ -201,9 +201,9 @@ fun CategoriasScreen(){
     }
 
 }
-
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun CategoScreenPreview() {
-    CategoriasScreen()
-}
+//
+//@Preview(showBackground = true, showSystemUi = true)
+//@Composable
+//fun CategoScreenPreview() {
+//    CategoriasScreen()
+//}
