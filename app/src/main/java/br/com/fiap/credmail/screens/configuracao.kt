@@ -36,15 +36,21 @@ import br.com.fiap.credmail.componentes.CaixadeEntradaConfig
 import br.com.fiap.credmail.componentes.TextoMenu
 
 
+
 @Composable
 fun ConfiguracoesScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController, id: Long?){
     var textNomeSobrenome by remember {
         mutableStateOf("")
     }
 
+    var cor_escolhida = 0xFFDAC8CD
+
+
+
     Box(modifier = Modifier
         .fillMaxSize()
-        .background(color = colorResource(id = R.color.azul_200))) {
+        .background(Color(cor_escolhida))
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxSize(),
@@ -59,16 +65,16 @@ fun ConfiguracoesScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: Na
                 verticalAlignment    = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceEvenly
 
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.voltar),
-                        contentDescription = "voltar",
-                        modifier = Modifier
-                            .size(15.dp)
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.voltar),
+                    contentDescription = "voltar",
+                    modifier = Modifier
+                        .size(15.dp)
 ////                        .padding(top = 10.dp)
-                    )
-                    TextoMenu(texto = "Configurações")
-                }
+                )
+                TextoMenu(texto = "Configurações")
+            }
             Column (
                 modifier = Modifier
                     .fillMaxWidth()
@@ -114,36 +120,52 @@ fun ConfiguracoesScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: Na
                         mutableStateOf("claro")
                     }
                     Card(
-                        modifier = Modifier.width(150.dp),
-                        colors = CardDefaults.cardColors(containerColor = Color.LightGray),
+                        modifier = Modifier.width(120.dp),
+                        colors = CardDefaults.cardColors(containerColor = colorResource(id = R.color.outroazul)),
                         shape = RoundedCornerShape(16.dp)
                     ){
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
                         ) {
                             RadioButton(
-                                selected = opcaoselecionada == "claro",
-                                onClick = {opcaoselecionada = "claro"},
-                                colors = RadioButtonDefaults.colors(
-                                    selectedColor = Color.White,
-                                    unselectedColor = Color.Black))
-                            Text(text = "Claro")}
-                    }
-                    Card(
-                        modifier = Modifier.width(150.dp),
-                        colors = CardDefaults.cardColors(containerColor = Color.DarkGray),
-                        shape = RoundedCornerShape(16.dp)
-                    ){
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                        ) {
-                            RadioButton(
-                                selected = opcaoselecionada == "escuro",
-                                onClick = {opcaoselecionada = "escuro"},
+                                selected = opcaoselecionada == "azul",
+                                onClick = {opcaoselecionada = "azul"},
                                 colors = RadioButtonDefaults.colors(
                                     selectedColor = Color.White,
                                     unselectedColor = Color.LightGray))
-                            Text(text = "Escuro")}
+                            Text(text = "Azul", color = Color.White)}
+                    }
+                    Card(
+                        modifier = Modifier.width(120.dp),
+                        colors = CardDefaults.cardColors(containerColor = colorResource(id = R.color.amarelo)),
+                        shape = RoundedCornerShape(16.dp)
+                    ){
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
+                            RadioButton(
+                                selected = opcaoselecionada == "amarelo",
+                                onClick = {opcaoselecionada = "amarelo"},
+                                colors = RadioButtonDefaults.colors(
+                                    selectedColor = Color.White,
+                                    unselectedColor = Color.LightGray))
+                            Text(text = "Amarelo", color = Color.White)}
+                    }
+                    Card(
+                        modifier = Modifier.width(120.dp),
+                        colors = CardDefaults.cardColors(containerColor = colorResource(id = R.color.vermelho)),
+                        shape = RoundedCornerShape(16.dp)
+                    ){
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
+                            RadioButton(
+                                selected = opcaoselecionada == "rosa",
+                                onClick = {opcaoselecionada = "rosa"},
+                                colors = RadioButtonDefaults.colors(
+                                    selectedColor = Color.White,
+                                    unselectedColor = Color.LightGray))
+                            Text(text = "Rosa", color = Color.White)}
                     }
 
 
@@ -154,12 +176,11 @@ fun ConfiguracoesScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: Na
 
 
             }
-            }
-
         }
 
-}
+    }
 
+}
 /*
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
