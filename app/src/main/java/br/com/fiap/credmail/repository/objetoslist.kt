@@ -3,6 +3,7 @@ package br.com.fiap.credmail.repository
 import br.com.fiap.credmail.R
 import br.com.fiap.credmail.model.CategoriasCards
 import br.com.fiap.credmail.model.ContatoAgenda
+import br.com.fiap.credmail.model.Cor
 import br.com.fiap.credmail.model.Email
 
 fun getAllContatos(): List<ContatoAgenda> {
@@ -28,6 +29,14 @@ fun getAllEmails(): List<Email> {
     )
 }
 
+fun getCor(): List<Cor> {
+    return listOf(
+        Cor(id = 1, cor = "Rosa", rdra = R.color.vermelhinho, hexa = 0xFFDAC8CD, flagAtivo = false),
+        Cor(id = 2, cor = "Amarelo", rdra = R.color.amarelinho_fundo, hexa = 0xFFFFF3CF, flagAtivo = false),
+        Cor(id = 3, cor = "Azul", rdra = R.color.azul_200, hexa = 0xFFBBDDF2, flagAtivo = true),
+
+        )
+}
 
 fun getContatosByNome(nome: String): List<ContatoAgenda>{
     return getAllContatos().filter {
