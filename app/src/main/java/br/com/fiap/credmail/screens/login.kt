@@ -36,6 +36,7 @@ import androidx.navigation.NavController
 import br.com.fiap.credmail.R
 import br.com.fiap.credmail.componentes.BotaoLogin
 import br.com.fiap.credmail.componentes.CaixadeEntrada
+import br.com.fiap.credmail.componentes.CaixadeEntradaSenha
 import br.com.fiap.credmail.componentes.TextoPrincipal
 import br.com.fiap.credmail.componentes.TextoTipo2
 import br.com.fiap.credmail.database.repository.UsuarioRepository
@@ -89,7 +90,7 @@ fun LoginScreen(navController: NavController, loginViewModel: LoginViewModel) {
                         Spacer(modifier = Modifier.height(20.dp))
                         CaixadeEntrada(placeHolder = "Digite seu e-mail.", keyboardType = KeyboardType.Email, value = email, atualizaValor = {loginViewModel.onEmailChanged(it)})
                         Spacer(modifier = Modifier.height(16.dp))
-                        CaixadeEntrada(placeHolder = "Digite sua senha.", keyboardType = KeyboardType.Password, value = password, atualizaValor = {loginViewModel.onPasswordChanged(it)})
+                        CaixadeEntradaSenha(placeHolder = "Digite sua senha.", keyboardType = KeyboardType.Password, value = password, atualizaValor = {loginViewModel.onPasswordChanged(it)})
                         Spacer(modifier = Modifier.height(16.dp))
                         Button(
                             onClick = {
