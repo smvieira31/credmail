@@ -6,7 +6,7 @@ import br.com.fiap.credmail.model.ContatoAgenda
 import br.com.fiap.credmail.model.Cor
 import br.com.fiap.credmail.model.CorCategoria
 import br.com.fiap.credmail.model.Email
-import br.com.fiap.credmail.model.Icone
+import br.com.fiap.credmail.model.CategoriaIcone
 
 fun getAllContatos(): List<ContatoAgenda> {
     return listOf(
@@ -39,18 +39,18 @@ fun getCor(): List<Cor> {
 
         )
 
-}fun geIcone(): List<Icone> {
+}fun getAllIcons(): List<CategoriaIcone> {
     return listOf(
-        Icone(id = 1, descricao = "Bolsa", rdra = R.drawable.bag),
-        Icone(id = 2, descricao = "Carro", rdra = R.drawable.mobilidade),
-        Icone(id = 3, descricao = "Coracao", rdra = R.drawable.coracao),
-        Icone(id = 4, descricao = "Paisagem", rdra = R.drawable.landscape),
-        Icone(id = 5, descricao = "Camera", rdra = R.drawable.camera),
-        Icone(id = 6, descricao = "Pasta", rdra = R.drawable.briefcase),
-        Icone(id = 7, descricao = "Pincel", rdra = R.drawable.brush),
-        Icone(id = 8, descricao = "Jogo", rdra = R.drawable.puzzle),
-        Icone(id = 9, descricao = "Casa", rdra = R.drawable.home),
-        Icone(id = 10, descricao = "Carrinho", rdra = R.drawable.cart)
+        CategoriaIcone(id = 1, descricao = "Bolsa", rdra = R.drawable.bag),
+        CategoriaIcone(id = 2, descricao = "Carro", rdra = R.drawable.mobilidade),
+        CategoriaIcone(id = 3, descricao = "Coracao", rdra = R.drawable.coracao),
+        CategoriaIcone(id = 4, descricao = "Paisagem", rdra = R.drawable.landscape),
+        CategoriaIcone(id = 5, descricao = "Camera", rdra = R.drawable.camera),
+        CategoriaIcone(id = 6, descricao = "Pasta", rdra = R.drawable.briefcase),
+        CategoriaIcone(id = 7, descricao = "Pincel", rdra = R.drawable.brush),
+        CategoriaIcone(id = 8, descricao = "Jogo", rdra = R.drawable.puzzle),
+        CategoriaIcone(id = 9, descricao = "Casa", rdra = R.drawable.home),
+        CategoriaIcone(id = 10, descricao = "Carrinho", rdra = R.drawable.cart)
         )
 }
 
@@ -61,7 +61,7 @@ fun getCoresCategoria(): List<CorCategoria>{
         CorCategoria(id= 1, cor= "Verde", rdra_icone= R.color.verde, hexa_icone = 0xFF00690B, rdra_fundo = R.color.verdinho, hexa_fundo = 0xFFA3FFAC),
         CorCategoria(id= 1, cor= "Aqua", rdra_icone= R.color.aqua, hexa_icone = 0xFF156754, rdra_fundo = R.color.aquaclaro, hexa_fundo = 0xFF95FFE1),
         CorCategoria(id= 1, cor= "Cinza", rdra_icone= R.color.cinza, hexa_icone = 0xFF373737, rdra_fundo = R.color.cinzaclaro, hexa_fundo = 0xFFCCCCCC),
-        CorCategoria(id= 1, cor= "Vermelho", rdra_icone= R.color.vermelho, hexa_icone = 0xFFD2325D, rdra_fundo = R.color.vermelhinho, hexa_fundo = 0xFFCCCCCC),
+        CorCategoria(id= 1, cor= "Vermelho", rdra_icone= R.color.vermelho, hexa_icone = 0xFFD2325D, rdra_fundo = R.color.vermelhinho, hexa_fundo = 0xFFDAC8CD),
         CorCategoria(id= 1, cor= "Roxo", rdra_icone= R.color.roxo, hexa_icone = 0xFF4600A0, rdra_fundo = R.color.lilas, hexa_fundo = 0xFFC5B6D9),
         CorCategoria(id= 1, cor= "Azul", rdra_icone= R.color.outroazul, hexa_icone = 0xFF047382, rdra_fundo = R.color.outroazulzinho, hexa_fundo = 0xFF8BE0EB),
     )

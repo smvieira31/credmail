@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,6 +13,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -26,17 +31,23 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import br.com.fiap.credmail.R
+import br.com.fiap.credmail.componentes.BotaoSalvar
 import br.com.fiap.credmail.componentes.CaixadeEntradaCategoria
 import br.com.fiap.credmail.componentes.CaixadeEntradaConfig
 import br.com.fiap.credmail.componentes.TextoMenu
 import br.com.fiap.credmail.componentes.Voltar
+import br.com.fiap.credmail.repository.getAllIcons
+import br.com.fiap.credmail.repository.getCoresCategoria
+
 
 @Composable
 fun CategoriasScreen(){
@@ -59,7 +70,7 @@ fun CategoriasScreen(){
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(150.dp),
+                    .height(100.dp),
                 verticalAlignment    = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceEvenly
 
@@ -87,54 +98,102 @@ fun CategoriasScreen(){
                     placeHolder = "*Max 20 caracteres",
                     keyboardType = KeyboardType.Text,
                     value = textNomeCategoria,
-                    atualizaValor = { novoValor ->
-                        textNomeCategoria = novoValor
+                    atualizaValor = {
+
+//                        novoValor ->
+//                        textNomeCategoria = novoValor
+/*TODO*/
+/* Queria limitar os caracteres*/
+
+                        if (it.length <= 20) {
+                            textNomeCategoria = it
+                        }
                     })
 
 
                 TextoMenu(texto = "Escolha a imagem")
 
-                Row (verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween){
+                //Row (verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween){
 
-                    var opcaoselecionada by remember {
-                        mutableStateOf("claro")
-                    }
-                    Card(
-                        modifier = Modifier.width(70.dp).height(90.dp),
+                LazyVerticalGrid(
+                    columns = GridCells.Fixed(5), // Define 2 colunas
+                    modifier = Modifier.fillMaxWidth(),
+                    contentPadding = PaddingValues(16.dp), // Padding da grid
+                    horizontalArrangement = Arrangement.spacedBy(8.dp), // Espaçamento horizontal entre os itens
+                    verticalArrangement = Arrangement.spacedBy(8.dp) // Espaçamento vertical entre os itens
+                )  {
+                    items(getAllIcons()){
+                        var opcaoselecionada by remember {
+                            mutableStateOf("claro")
+                        }
+                        Card(
+                            modifier = Modifier.width(70.dp).height(70.dp),
 
-                        colors = CardDefaults.cardColors(containerColor = Color.LightGray),
-                        shape = RoundedCornerShape(16.dp)
-                    ){
-                        Column(
-                            modifier = Modifier.fillMaxSize(),
-                            verticalArrangement = Arrangement.Center,
-                            horizontalAlignment = Alignment.CenterHorizontally
+                            colors = CardDefaults.cardColors(containerColor = Color.White),
+                            shape = RoundedCornerShape(16.dp)
                         ) {
-                            Image(
-                                painter = painterResource(id = R.drawable.bag),
-                                col
-                                contentDescription = "Categoria",
-                                modifier = Modifier
-                                    .size(28.dp)
-                                    .padding(5.dp)
-                            )
-                            RadioButton(
-                                selected = opcaoselecionada == "azul",
-                                onClick = {opcaoselecionada = "azul"},
-                                colors = RadioButtonDefaults.colors(
-                                    selectedColor = Color.White,
-                                    unselectedColor = Color.LightGray))
+                            Column(
+                                modifier = Modifier.fillMaxSize(),
+                                verticalArrangement = Arrangement.Center,
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
+                                Image(
+                                    painter = painterResource(id = it.rdra),
+                                    colorFilter = ColorFilter.tint(Color.DarkGray),
+                                    contentDescription = it.descricao,
+                                    modifier = Modifier
+                                        .size(50.dp)
+                                    .padding(8.dp)
+                                )
+                                RadioButton(
+                                    selected = opcaoselecionada == it.descricao,
+                                    onClick = { opcaoselecionada = it.descricao },
+                                    colors = RadioButtonDefaults.colors(
+                                        selectedColor = Color.LightGray,
+                                        unselectedColor = Color.DarkGray
+                                    ),
+                                    modifier = Modifier.size(8.dp)
+                                )
 
+                            }
                         }
                     }
-
-
-
-
-
                 }
+                TextoMenu(texto = "Escolha a cor")
 
-
+                LazyVerticalGrid(
+                    columns = GridCells.Fixed(2),
+                    modifier = Modifier.fillMaxWidth(),
+                    contentPadding = PaddingValues(16.dp),
+                    horizontalArrangement = Arrangement.spacedBy(5.dp),
+                    verticalArrangement = Arrangement.spacedBy(5.dp)
+                )  {
+                    items(getCoresCategoria()){
+                        var corselecionada by remember {
+                            mutableStateOf("claro")
+                        }
+                        Card(
+                            modifier = Modifier.width(120.dp).height(40.dp),
+                            colors = CardDefaults.cardColors(containerColor = Color(it.hexa_fundo)),
+                            shape = RoundedCornerShape(8.dp)
+                        ){
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                            ) {
+                                RadioButton(
+                                    selected = corselecionada == it.cor,
+                                    onClick = {corselecionada = it.cor},
+                                    colors = RadioButtonDefaults.colors(
+                                        selectedColor = Color.White,
+                                        unselectedColor = Color.DarkGray))
+                                Text(text = it.cor, fontWeight = FontWeight.ExtraBold, color = Color(it.hexa_icone))
+                            }
+                        }
+                    }
+                }
+                Row (horizontalArrangement = Arrangement.Center, modifier = Modifier.fillMaxWidth()){
+                    BotaoSalvar()
+                }
 
             }
         }

@@ -35,7 +35,6 @@ fun CaixadeEntradaCategoria(
         value = value,
         onValueChange = atualizaValor,
         modifier = Modifier.fillMaxWidth(),
-        //label = {Text("danadinho apareceu",color = Color.Black)},
         placeholder = {
             Text(
                 text = placeHolder,
