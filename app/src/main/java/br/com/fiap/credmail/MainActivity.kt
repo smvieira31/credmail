@@ -60,7 +60,11 @@ class MainActivity : ComponentActivity() {
                             })){
                             val id = it.arguments?.getLong("id")
                             MenuScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id)}
-                        composable(route = "cadastro"){ CadastroScreen(CadastroViewModel(),𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿) }
+                        composable(route = "cadastro?mensagem={texto}",
+                            arguments = listOf(
+                                navArgument(name = "texto"){
+                                    defaultValue = "sem valor"
+                                })){ CadastroScreen(CadastroViewModel(),𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,it.arguments?.getString("texto")) }
                         composable(route = "contatos/{id}",
                             arguments = listOf(
                                 navArgument(name = "id"){

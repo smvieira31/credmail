@@ -1,5 +1,6 @@
 package br.com.fiap.credmail.screens
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -32,21 +33,28 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import br.com.fiap.credmail.R
-import br.com.fiap.credmail.componentes.Botao
 import br.com.fiap.credmail.componentes.CaixadeEntrada
 import br.com.fiap.credmail.componentes.TextoPrincipal
+import br.com.fiap.credmail.componentes.TextoTipo2
 import br.com.fiap.credmail.database.repository.EmailRepository
 import br.com.fiap.credmail.database.repository.UsuarioRepository
-import br.com.fiap.credmail.model.Email
-import br.com.fiap.credmail.model.Usuario
+import br.com.fiap.credmail.model.CadastroUsuarioReq
+import br.com.fiap.credmail.model.CadastroUsuarioRes
+import br.com.fiap.credmail.service.RetrofitFactory
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 @Composable
-fun CadastroScreen(cadastroViewModel: CadastroViewModel, navController: NavController){
+fun CadastroScreen(
+    cadastroViewModel: CadastroViewModel,
+    navController: NavController,
+    texto: String?
+){
 
     val nome by cadastroViewModel.nome.observeAsState(initial = "")
     val email by cadastroViewModel.email.observeAsState(initial = "")
@@ -57,11 +65,15 @@ fun CadastroScreen(cadastroViewModel: CadastroViewModel, navController: NavContr
     var confirmaSenha by remember {
         mutableStateOf("")
     }
-
+    var mensagem by remember {
+        mutableStateOf(CadastroUsuarioRes())
+    }
 
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
-            modifier = Modifier.fillMaxSize().background(Color.White),
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.White),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
@@ -70,7 +82,9 @@ fun CadastroScreen(cadastroViewModel: CadastroViewModel, navController: NavContr
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center){
                 Card(
-                    modifier = Modifier.width(340.dp).offset(y = (200).dp),
+                    modifier = Modifier
+                        .width(340.dp)
+                        .offset(y = (200).dp),
                     colors = CardDefaults.cardColors(containerColor = colorResource(id = R.color.azul_200)),
                     shape = RoundedCornerShape(16.dp)
                 ) {
@@ -79,7 +93,12 @@ fun CadastroScreen(cadastroViewModel: CadastroViewModel, navController: NavContr
                         horizontalAlignment = Alignment.CenterHorizontally
                     )
                     {
+                        Spacer(modifier = Modifier.height(20.dp))
                         TextoPrincipal(texto = "Cadastre sua conta")
+                        if(!texto.equals("sem valor")){
+                            Spacer(modifier = Modifier.height(20.dp))
+                            TextoTipo2(texto = texto.orEmpty())
+                        }
                         Spacer(modifier = Modifier.height(20.dp))
                         CaixadeEntrada(placeHolder = "Digite um nome de usuário", keyboardType = KeyboardType.Text,value = nome, atualizaValor = {cadastroViewModel.onNomeChanged(it)})
                         Spacer(modifier = Modifier.height(16.dp))
@@ -92,21 +111,40 @@ fun CadastroScreen(cadastroViewModel: CadastroViewModel, navController: NavContr
                         Button(
                             onClick = {
                                 if(password.equals(confirmaSenha)) {
-                                    val idUsuario = usuarioRepository.salvar(
-                                        Usuario(
-                                            nome = nome,
-                                            email = email,
-                                            senha = password,
-                                            id = null
-                                        )
+                                //    val idUsuario = usuarioRepository.salvar(
+                                //        Usuario(
+                                //            nome = nome,
+                                //            email = email,
+                                //            senha = password,
+                                //            id = null
+                                //        )
+                                //    )
+                                    //emailRepository.salvarEmail(Email(id= null,remetente = "PicPay",titulo = "Dê mais pique pro seu dinheiro!",categoria = "Financeiro", conteudo = "...", corTexto = R.color.vermelho, corCard = R.color.vermelhinho, idUsuario = idUsuario,flagLido = false))
+                                    //emailRepository.salvarEmail(Email(id= null,remetente = "Decolar",titulo = "Eba! Sua viagem está confirmada",categoria = "Mobilidade", conteudo = "...", corTexto = R.color.amarelo, corCard = R.color.amarelinho, idUsuario = idUsuario,flagLido = false))
+                                    //emailRepository.salvarEmail(Email(id= null,remetente = "Amil",titulo = "Quer viver a vida ao máximo",categoria = "Bem-estar", conteudo = "...", corTexto = R.color.outroazul, corCard = R.color.outroazulzinho, idUsuario = idUsuario,flagLido = false))*/
+                                    val call = RetrofitFactory().postCadastroService().setCadastro(
+                                        CadastroUsuarioReq(nome = nome,password = password, confirma= confirmaSenha,email= email)
                                     )
-                                    emailRepository.salvarEmail(Email(id= null,remetente = "PicPay",titulo = "Dê mais pique pro seu dinheiro!",categoria = "Financeiro", conteudo = "...", corTexto = R.color.vermelho, corCard = R.color.vermelhinho, idUsuario = idUsuario,flagLido = false))
-                                    emailRepository.salvarEmail(Email(id= null,remetente = "Decolar",titulo = "Eba! Sua viagem está confirmada",categoria = "Mobilidade", conteudo = "...", corTexto = R.color.amarelo, corCard = R.color.amarelinho, idUsuario = idUsuario,flagLido = false))
-                                    emailRepository.salvarEmail(Email(id= null,remetente = "Amil",titulo = "Quer viver a vida ao máximo",categoria = "Bem-estar", conteudo = "...", corTexto = R.color.outroazul, corCard = R.color.outroazulzinho, idUsuario = idUsuario,flagLido = false))
+                                    call.enqueue(object : Callback<CadastroUsuarioRes>{
+                                        override fun onResponse(
+                                            call: Call<CadastroUsuarioRes>,
+                                            response: Response<CadastroUsuarioRes>
+                                        ) {
+                                            Log.i("informação", "onResponse ${response.code()} e o body ${response.body()}")
+                                            var mensagem = response.body()!!
+                                            if(mensagem.mensagem!=null)
+                                                navController.navigate("cadastro?mensagem=${response.body()!!.mensagem}")
+                                        }
 
-                                    navController.navigate("𝗹𝗼𝗴𝗶𝗻")
-                                }
-                                navController.navigate("cadastro")
+                                        override fun onFailure(
+                                            call: Call<CadastroUsuarioRes>,
+                                            t: Throwable
+                                        ) {
+                                            t.printStackTrace()
+                                            TODO("Not yet implemented")
+                                        }
+                                    })
+                                    }
 
                             },
                             modifier = Modifier
