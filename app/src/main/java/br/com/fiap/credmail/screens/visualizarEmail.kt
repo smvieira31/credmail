@@ -29,7 +29,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import br.com.fiap.credmail.R
 import br.com.fiap.credmail.componentes.BotaoIcone
-import br.com.fiap.credmail.componentes.BotaoIconeVec
 import br.com.fiap.credmail.componentes.CardVisuEmail
 import br.com.fiap.credmail.componentes.TextoTipo5
 import br.com.fiap.credmail.database.repository.EmailRepository
@@ -41,6 +40,7 @@ fun VisualizarScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHo
     val emailRepository = EmailRepository(context)
     val email: Email = emailRepository.buscaEmail(idEmail)
     emailRepository.emailLido(true,idEmail)
+
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier

@@ -18,12 +18,13 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import br.com.fiap.credmail.model.Email
+import br.com.fiap.credmail.R
+import br.com.fiap.credmail.model.HomeEmailDTO
 
 
 @Composable
-fun EmailCard(emails: Email, 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController){
-    Button(onClick = { 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("ler/${emails.idUsuario}/${emails.id}")},
+fun EmailCard(emails: HomeEmailDTO, 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController){
+    Button(onClick = { 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("ler/${emails.id}/${emails.idUsuario}")},
         modifier = Modifier
             .fillMaxWidth()
             .height(100.dp),
@@ -46,8 +47,8 @@ fun EmailCard(emails: Email, 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲�
                     TextoEmailipo2(texto = emails.titulo, color = Color.Black)
                     TextoEmailTipo3(texto = emails.conteudo, color = Color.Black)
                 }
-                Card (colors = CardDefaults.cardColors(colorResource(id = emails.corCard))){
-                    TextoTipo5Email(texto = emails.categoria, color = emails.corTexto)
+                Card (colors = CardDefaults.cardColors(colorResource(id = R.color.azul_200))){
+                    TextoTipo5Email(texto = "categoria", color = R.color.azul_200)
                 }
             }
         }

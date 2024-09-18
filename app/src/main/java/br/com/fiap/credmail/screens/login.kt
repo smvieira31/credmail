@@ -45,6 +45,7 @@ import br.com.fiap.credmail.database.repository.UsuarioRepository
 import br.com.fiap.credmail.model.LoginReq
 import br.com.fiap.credmail.model.LoginRes
 import br.com.fiap.credmail.service.RetrofitFactory
+import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -72,7 +73,9 @@ fun LoginScreen(navController: NavController, loginViewModel: LoginViewModel) {
 
     Box(modifier = Modifier.fillMaxSize()){
         Column (
-            modifier = Modifier.fillMaxSize().background(Color.White),
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.White),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ){
@@ -106,30 +109,33 @@ fun LoginScreen(navController: NavController, loginViewModel: LoginViewModel) {
                             onClick = {
 //                                val usuario : Usuario?
 //                                usuario = usuarioRepository.buscarPorEmail(email)
+                                val log: LoginReq = LoginReq(email,password)
+                                val gson = Gson()
+                                val json = gson.toJson(log)
+                                Log.i("informação", json)
                                 val call = RetrofitFactory().postLoginService().realizarLogin(
-                                    LoginReq(email,password)
+                                    log
                                 )
-                                call.enqueue(object : Callback<LoginRes> {
+                                call.enqueue(object : Callback<LoginRes>{
                                     override fun onResponse(
                                         call: Call<LoginRes>,
                                         response: Response<LoginRes>
                                     ) {
-                                        Log.i("informação", "onResponse ${response.code()} e o body ${response.body()}")
+                                        Log.i("informação",response.body()!!.toString())
                                         usuario = response.body()!!
-
+                                        if(usuario.status==1)
+                                            navController.navigate("home/${usuario.id}")
+                                        else
+                                            navController.navigate("𝗹𝗼𝗴𝗶𝗻")
                                     }
 
-                                    override fun onFailure(
-                                        call: Call<LoginRes>,
-                                        t: Throwable
-                                    ) {
+                                    override fun onFailure(call: Call<LoginRes>, t: Throwable) {
                                         t.printStackTrace()
-                                        TODO("Not yet implemented")
                                     }
                                 })
-                                if(usuario.id.toInt()!=1)
-                                    navController.navigate("𝗹𝗼𝗴𝗶𝗻")
-                                navController.navigate("home/${usuario.id}")
+//                                if(usuario.id.toInt()!=1)
+//                                    navController.navigate("𝗹𝗼𝗴𝗶𝗻")
+//                                navController.navigate("home/${usuario.id}")
                             },
                             modifier = Modifier
                                 .width(120.dp)

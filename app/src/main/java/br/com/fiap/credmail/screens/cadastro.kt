@@ -40,8 +40,6 @@ import br.com.fiap.credmail.R
 import br.com.fiap.credmail.componentes.CaixadeEntrada
 import br.com.fiap.credmail.componentes.TextoPrincipal
 import br.com.fiap.credmail.componentes.TextoTipo2
-import br.com.fiap.credmail.database.repository.EmailRepository
-import br.com.fiap.credmail.database.repository.UsuarioRepository
 import br.com.fiap.credmail.model.CadastroUsuarioReq
 import br.com.fiap.credmail.model.CadastroUsuarioRes
 import br.com.fiap.credmail.model.EntradaReq
@@ -63,8 +61,6 @@ fun CadastroScreen(
     val email by cadastroViewModel.email.observeAsState(initial = "")
     val password by cadastroViewModel.password.observeAsState(initial = "")
     val context = LocalContext.current
-    val usuarioRepository = UsuarioRepository(context)
-    val emailRepository = EmailRepository(context)
     var confirmaSenha by remember {
         mutableStateOf("")
     }
@@ -114,21 +110,10 @@ fun CadastroScreen(
                         Button(
                             onClick = {
                                 if(password.equals(confirmaSenha)) {
-                                //    val idUsuario = usuarioRepository.salvar(
-                                //        Usuario(
-                                //            nome = nome,
-                                //            email = email,
-                                //            senha = password,
-                                //            id = null
-                                //        )
-                                //    )
-                                    //emailRepository.salvarEmail(Email(id= null,remetente = "PicPay",titulo = "Dê mais pique pro seu dinheiro!",categoria = "Financeiro", conteudo = "...", corTexto = R.color.vermelho, corCard = R.color.vermelhinho, idUsuario = idUsuario,flagLido = false))
-                                    //emailRepository.salvarEmail(Email(id= null,remetente = "Decolar",titulo = "Eba! Sua viagem está confirmada",categoria = "Mobilidade", conteudo = "...", corTexto = R.color.amarelo, corCard = R.color.amarelinho, idUsuario = idUsuario,flagLido = false))
-                                    //emailRepository.salvarEmail(Email(id= null,remetente = "Amil",titulo = "Quer viver a vida ao máximo",categoria = "Bem-estar", conteudo = "...", corTexto = R.color.outroazul, corCard = R.color.outroazulzinho, idUsuario = idUsuario,flagLido = false))*/
                                     val listEmailImutavel: List<EntradaReq> = listOf(
-                                        EntradaReq("PicPay","Dê mais pique pro seu dinheiro!","...." ),
-                                        EntradaReq("Decolar","Eba! Sua viagem está confirmada","...." ),
-                                        EntradaReq("Amil","Quer viver a vida ao máximo","...." ))
+                                        EntradaReq("PicPay","Dê mais pique pro seu dinheiro!","....",R.color.vermelho, R.color.vermelhinho),
+                                        EntradaReq("Decolar","Eba! Sua viagem está confirmada","....", R.color.vermelho, R.color.vermelhinho),
+                                        EntradaReq("Amil","Quer viver a vida ao máximo","....",R.color.vermelho, R.color.vermelhinho))
                                     val listCategoriaImutavel: List<categoriaDTOList> = listOf(
                                         categoriaDTOList("Mobilidade",R.drawable.mobilidade,R.color.amarelo,R.color.amarelinho),
                                         categoriaDTOList(categoria = "Financeiro",  imagem = R.drawable.bag, corImagem = R.color.vermelho, corTexto = R.color.vermelhinho),

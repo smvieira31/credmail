@@ -1,5 +1,6 @@
 package br.com.fiap.credmail.screens
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -18,10 +19,13 @@ import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -33,29 +37,55 @@ import br.com.fiap.credmail.componentes.ItemsMenus
 import br.com.fiap.credmail.componentes.TextoMenu
 import br.com.fiap.credmail.componentes.TextoTipo3
 import br.com.fiap.credmail.componentes.Voltar
-import br.com.fiap.credmail.database.repository.UsuarioRepository
+import br.com.fiap.credmail.model.LoginRes
+import br.com.fiap.credmail.service.RetrofitFactory
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 @Composable
 //fun MenuScreen(navController: NavController) {
 fun MenuScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController, id: Long?) {
-    val context = LocalContext.current
-    val usuarioRepository = UsuarioRepository(context)
-    val usuario = usuarioRepository.buscarPorId(id)
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .background(color = colorResource(id = R.color.azul_200))) {
-        Column(
+    var idUsuario: Long = id!!
+    var usuario by remember {
+        mutableStateOf(LoginRes())
+    }
+    var isLoading by remember { mutableStateOf(true) }
+    val call = RetrofitFactory().postLoginService().buscarUsuario(idUsuario)
+
+    call.enqueue(object : Callback<LoginRes> {
+        override fun onResponse(
+            call: Call<LoginRes>,
+            response: Response<LoginRes>
+        ) {
+            Log.i("informação", "onResponse ${response.code()} e o body ${response.body()}")
+            usuario = response.body()!!
+            isLoading = false
+        }
+        override fun onFailure(call: Call<LoginRes>, t: Throwable) {
+            TODO("Not yet implemented")
+        }
+    })
+
+    if(!isLoading){
+        Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(45.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+                .background(color = colorResource(id = R.color.azul_200))
         ) {
-            //Header
-            Spacer(modifier = Modifier.height(40.dp))
-            Row (
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Start){
-                Voltar(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿 = 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿, id = id)
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(45.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                //Header
+                Spacer(modifier = Modifier.height(40.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Start
+                ) {
+                    Voltar(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿 = 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿, id = id)
 //                Image(
 //                    painter = painterResource(id = R.drawable.voltar),
 //                    contentDescription = "voltar",
@@ -63,39 +93,66 @@ fun MenuScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCont
 //                        .size(15.dp)
 ////                        .padding(top = 10.dp)
 //                )
-            }
-            Row (
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center
-            ){
-                Image(
-                    painter = painterResource(id = R.drawable.user),
-                    contentDescription = "User",
+                }
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.user),
+                        contentDescription = "User",
+                        modifier = Modifier
+                            .size(100.dp)
+                    )
+                }
+                Row {
+                    TextoMenu(texto = usuario.nome)
+                    Icon(
+                        imageVector = Icons.Default.Edit,
+                        contentDescription = "editar",
+                        tint = Color.Black
+                    )
+
+                }
+                Row {
+                    TextoTipo3(texto = usuario.email)
+                }
+                Spacer(modifier = Modifier.height(16.dp))
+                HorizontalDivider(
                     modifier = Modifier
-                        .size(100.dp)
+                        .height(1.dp)
+                        .width(300.dp), color = Color.LightGray
                 )
-            }
-            Row {
-                TextoMenu(texto = usuario.nome)
-                Icon(imageVector = Icons.Default.Edit, contentDescription = "editar", tint = Color.Black)
+                Spacer(modifier = Modifier.height(16.dp))
+                ItemsMenus(
+                    imagem = R.drawable.icon_email,
+                    descricao = "Entrada",
+                    textomenu = "Entrada",
+                    onclick = { 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("home/${id}") })
+                ItemsMenus(
+                    imagem = R.drawable.icon_send,
+                    descricao = "Enviados",
+                    textomenu = "Enviados",
+                    onclick = { 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("home/${id}") })
+                ItemsMenus(
+                    imagem = R.drawable.lixo,
+                    descricao = "Excluídos",
+                    textomenu = "Excluídos",
+                    onclick = { 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("home/${id}") })
+                ItemsMenus(
+                    imagem = R.drawable.spam,
+                    descricao = "Spam",
+                    textomenu = "Spam",
+                    onclick = { 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("spam/${id}") })
+                ItemsMenus(
+                    imagem = R.drawable.lixo,
+                    descricao = "Configurações",
+                    textomenu = "Configurações",
+                    onclick = { 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("configuracao/${id}") })
+                Spacer(modifier = Modifier.height(50.dp))
+                Botao(text = "Sair", 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿)
 
             }
-            Row {
-                TextoTipo3(texto = usuario.email)
-            }
-            Spacer(modifier = Modifier.height(16.dp))
-            HorizontalDivider(modifier = Modifier
-                .height(1.dp)
-                .width(300.dp), color = Color.LightGray)
-            Spacer(modifier = Modifier.height(16.dp))
-            ItemsMenus(imagem = R.drawable.icon_email, descricao = "Entrada", textomenu = "Entrada", onclick = {𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("home/${id}")})
-            ItemsMenus(imagem = R.drawable.icon_send, descricao = "Enviados", textomenu = "Enviados", onclick = {𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("home/${id}")})
-            ItemsMenus(imagem = R.drawable.lixo, descricao = "Excluídos", textomenu = "Excluídos", onclick = {𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("home/${id}")})
-            ItemsMenus(imagem = R.drawable.spam, descricao = "Spam", textomenu = "Spam", onclick = {𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("spam/${id}")})
-            ItemsMenus(imagem = R.drawable.lixo, descricao = "Configurações", textomenu = "Configurações", onclick = {𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("configuracao/${id}")})
-            Spacer(modifier = Modifier.height(50.dp))
-            Botao(text = "Sair", 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿)
-
         }
     }
 }
