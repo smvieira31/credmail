@@ -23,7 +23,6 @@ import br.com.fiap.credmail.R
 fun CardVisuEmail(
     titulo: String,
     remetente: String,
-    categoria: String,
     colorcategoria: Int,
     colortextocategoria: Int,
     dataemail: String,
@@ -42,7 +41,7 @@ fun CardVisuEmail(
         ) {
             TextoEmail(texto = titulo, Color.Black)
             Card(colors = CardDefaults.cardColors(colorResource(id = colorcategoria))) {
-                TextoTipo5Email(texto = categoria, color = colortextocategoria)
+                TextoTipo5Email(texto = "email", color = colortextocategoria)
             }
             Spacer(modifier = Modifier.height(20.dp))
             Row(verticalAlignment = Alignment.CenterVertically) {

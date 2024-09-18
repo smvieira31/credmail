@@ -37,4 +37,8 @@ class RetrofitFactory {
     fun postHomeService(): HomeService{
         return retrofitFactory.create(HomeService::class.java)
     }
+
+    fun postEmailService(): EmailService{
+        return retrofitFactory.create(EmailService::class.java)
+    }
 }

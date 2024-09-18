@@ -24,7 +24,7 @@ import br.com.fiap.credmail.model.HomeEmailDTO
 
 @Composable
 fun EmailCard(emails: HomeEmailDTO, 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostController){
-    Button(onClick = { 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("ler/${emails.id}/${emails.idUsuario}")},
+    Button(onClick = { 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("ler/${emails.idUsuario}/${emails.id}")},
         modifier = Modifier
             .fillMaxWidth()
             .height(100.dp),
