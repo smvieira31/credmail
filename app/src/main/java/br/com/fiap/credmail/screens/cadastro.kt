@@ -44,7 +44,10 @@ import br.com.fiap.credmail.database.repository.EmailRepository
 import br.com.fiap.credmail.database.repository.UsuarioRepository
 import br.com.fiap.credmail.model.CadastroUsuarioReq
 import br.com.fiap.credmail.model.CadastroUsuarioRes
+import br.com.fiap.credmail.model.EntradaReq
+import br.com.fiap.credmail.model.categoriaDTOList
 import br.com.fiap.credmail.service.RetrofitFactory
+import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -122,9 +125,20 @@ fun CadastroScreen(
                                     //emailRepository.salvarEmail(Email(id= null,remetente = "PicPay",titulo = "Dê mais pique pro seu dinheiro!",categoria = "Financeiro", conteudo = "...", corTexto = R.color.vermelho, corCard = R.color.vermelhinho, idUsuario = idUsuario,flagLido = false))
                                     //emailRepository.salvarEmail(Email(id= null,remetente = "Decolar",titulo = "Eba! Sua viagem está confirmada",categoria = "Mobilidade", conteudo = "...", corTexto = R.color.amarelo, corCard = R.color.amarelinho, idUsuario = idUsuario,flagLido = false))
                                     //emailRepository.salvarEmail(Email(id= null,remetente = "Amil",titulo = "Quer viver a vida ao máximo",categoria = "Bem-estar", conteudo = "...", corTexto = R.color.outroazul, corCard = R.color.outroazulzinho, idUsuario = idUsuario,flagLido = false))*/
-                                    val call = RetrofitFactory().postCadastroService().setCadastro(
-                                        CadastroUsuarioReq(nome = nome,password = password, confirma= confirmaSenha,email= email)
+                                    val listEmailImutavel: List<EntradaReq> = listOf(
+                                        EntradaReq("PicPay","Dê mais pique pro seu dinheiro!","...." ),
+                                        EntradaReq("Decolar","Eba! Sua viagem está confirmada","...." ),
+                                        EntradaReq("Amil","Quer viver a vida ao máximo","...." ))
+                                    val listCategoriaImutavel: List<categoriaDTOList> = listOf(
+                                        categoriaDTOList("Mobilidade",R.drawable.mobilidade,R.color.amarelo,R.color.amarelinho),
+                                        categoriaDTOList(categoria = "Financeiro",  imagem = R.drawable.bag, corImagem = R.color.vermelho, corTexto = R.color.vermelhinho),
+                                        categoriaDTOList(categoria = "Bem-estar",  imagem = R.drawable.coracao, corImagem = R.color.outroazul, corTexto = R.color.outroazulzinho)
                                     )
+                                    val cadastroUsuarioReq = CadastroUsuarioReq(nome = nome,password = password, confirma= confirmaSenha,email= email, emailDTOList = listEmailImutavel, categoriaDTOList = listCategoriaImutavel)
+                                    val gson = Gson()
+                                    val json = gson.toJson(cadastroUsuarioReq)
+                                    Log.i("informação", "requisição = "+json)
+                                    val call = RetrofitFactory().postCadastroService().setCadastro(cadastroUsuarioReq)
                                     call.enqueue(object : Callback<CadastroUsuarioRes>{
                                         override fun onResponse(
                                             call: Call<CadastroUsuarioRes>,

@@ -22,6 +22,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -39,7 +42,12 @@ import br.com.fiap.credmail.componentes.CaixadeEntrada
 import br.com.fiap.credmail.componentes.TextoPrincipal
 import br.com.fiap.credmail.componentes.TextoTipo2
 import br.com.fiap.credmail.database.repository.UsuarioRepository
-import br.com.fiap.credmail.model.Usuario
+import br.com.fiap.credmail.model.LoginReq
+import br.com.fiap.credmail.model.LoginRes
+import br.com.fiap.credmail.service.RetrofitFactory
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 @Composable
@@ -58,6 +66,9 @@ fun LoginScreen(navController: NavController, loginViewModel: LoginViewModel) {
 
     val context = LocalContext.current
     val usuarioRepository = UsuarioRepository(context)
+    var usuario by remember {
+        mutableStateOf(LoginRes())
+    }
 
     Box(modifier = Modifier.fillMaxSize()){
         Column (
@@ -93,18 +104,32 @@ fun LoginScreen(navController: NavController, loginViewModel: LoginViewModel) {
                         Spacer(modifier = Modifier.height(16.dp))
                         Button(
                             onClick = {
-                                val usuario : Usuario?
-                                usuario = usuarioRepository.buscarPorEmail(email)
-                                if(usuario==null)
-                                    navController.navigate("erro")
-                                if (usuario != null) {
-                                    Log.i("info", "home/${usuario.id}")
-                                }
-                                if(!loginViewModel.validarUsuario(usuario,password))
+//                                val usuario : Usuario?
+//                                usuario = usuarioRepository.buscarPorEmail(email)
+                                val call = RetrofitFactory().postLoginService().realizarLogin(
+                                    LoginReq(email,password)
+                                )
+                                call.enqueue(object : Callback<LoginRes> {
+                                    override fun onResponse(
+                                        call: Call<LoginRes>,
+                                        response: Response<LoginRes>
+                                    ) {
+                                        Log.i("informação", "onResponse ${response.code()} e o body ${response.body()}")
+                                        usuario = response.body()!!
+
+                                    }
+
+                                    override fun onFailure(
+                                        call: Call<LoginRes>,
+                                        t: Throwable
+                                    ) {
+                                        t.printStackTrace()
+                                        TODO("Not yet implemented")
+                                    }
+                                })
+                                if(usuario.id.toInt()!=1)
                                     navController.navigate("𝗹𝗼𝗴𝗶𝗻")
-                                if (usuario != null) {
-                                    navController.navigate("home/${usuario.id}")
-                                }
+                                navController.navigate("home/${usuario.id}")
                             },
                             modifier = Modifier
                                 .width(120.dp)
