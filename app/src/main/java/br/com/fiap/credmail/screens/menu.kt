@@ -133,7 +133,7 @@ fun MenuScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCont
                     imagem = R.drawable.icon_send,
                     descricao = "Enviados",
                     textomenu = "Enviados",
-                    onclick = { 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("home/${id}") })
+                    onclick = { 𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿.navigate("saida/${id}") })
                 ItemsMenus(
                     imagem = R.drawable.lixo,
                     descricao = "Excluídos",

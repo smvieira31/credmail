@@ -32,7 +32,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import br.com.fiap.credmail.R
 import br.com.fiap.credmail.componentes.BarraInferior
-import br.com.fiap.credmail.componentes.BotaoIcone
+import br.com.fiap.credmail.componentes.BotaoIconeEnviar
 import br.com.fiap.credmail.componentes.CaixadeEntradaEmail
 import br.com.fiap.credmail.componentes.TextoMenu
 import br.com.fiap.credmail.componentes.TextoTipo2noAlig
@@ -69,13 +69,16 @@ fun EnviarScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCo
 
                 ) {
                     if (id != null) {
-                        BotaoIcone(
+                        BotaoIconeEnviar(
                             color = Color.White,
                             imagemicone = R.drawable.voltar,
                             descricao = "Voltar",
                             𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,
                             id,
-                            "home"
+                            destinatario,
+                            assunto,
+                            texto
+
                         )
                     }
 
@@ -97,13 +100,15 @@ fun EnviarScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿: NavHostCo
                 ){
 
                     if (id != null) {
-                        BotaoIcone(
+                        BotaoIconeEnviar(
                             color = Color.White,
                             imagemicone = R.drawable.icon_send,
                             descricao = "Anexar",
                             𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,
                             id,
-                            "excluir"
+                            "excluir",
+                            assunto,
+                            texto
                         )
                     }
                     Spacer(modifier = Modifier.width(10.dp))

@@ -16,6 +16,7 @@ import br.com.fiap.credmail.screens.CadastroScreen
 import br.com.fiap.credmail.screens.CadastroViewModel
 import br.com.fiap.credmail.screens.ConfiguracoesScreen
 import br.com.fiap.credmail.screens.ContatosScreen
+import br.com.fiap.credmail.screens.EmailSaidaScreen
 import br.com.fiap.credmail.screens.EmailsScreen
 import br.com.fiap.credmail.screens.EnviarScreen
 import br.com.fiap.credmail.screens.ErroScreen
@@ -105,6 +106,16 @@ class MainActivity : ComponentActivity() {
                                 })){
                             val id = it.arguments?.getLong("id")
                             SpamsScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id)
+                        }
+                        composable(route = "saida/{id}",
+                            arguments = listOf(
+                                navArgument(name = "id"){
+                                    type = NavType.LongType
+                                })){
+                            val id = it.arguments?.getLong("id")
+                            if (id != null) {
+                                EmailSaidaScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿,id)
+                            }
                         }
                         composable(route = "erro"){ ErroScreen(𝗻𝗮𝘃𝗖𝗼𝗻𝘁𝗿𝗼𝗹𝗹𝗲𝗿) }
                     }
